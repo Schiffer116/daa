@@ -1,4 +1,4 @@
-/hw1/hw1.aux
-/hw1/hw1.fls
-/hw1/hw1.log
-/hw1/hw1.pdf
+/**/*.aux
+/**/*.fls
+/**/*.log
+/**/*.pdf
