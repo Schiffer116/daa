@@ -4,7 +4,6 @@
 \usepackage[vietnamese]{babel}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage[margin=3cm]{geometry}
 \usepackage{titlesec}
 \usepackage{color}
 
@@ -54,11 +53,12 @@
 \begin{document}
 \maketitle
 \pagebreak
+\newgeometry{margin=3cm}
 
 \section{Tính tổng hữu hạn}
 \subsection{Yêu cầu: Tính chính xác, không cho phép sai số hay xấp xỉ}
 \begin{enumerate}
-    \item $ 1 + 3 + 5 + 7 + \cdots + 999 = \frac{500(999 + 1)}{2} = 250000 $
+	\item $ 1 + 3 + 5 + 7 + \cdots + 999 = \frac{500(999 + 1)}{2} = 250000 $
 	\item $ 2 + 4 + 8 + 16 + \cdots + 1024 $
 	\item $ \sum^{n + 1}_{i = 3} 1 $
 	\item $ \sum^{n + 1}_{i = 3} i $
