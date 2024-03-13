@@ -1,4 +1,5 @@
 \documentclass[12pt, letterpaper]{article}
+
 \usepackage[top = 1cm, bottom = 0.75cm, left = 1in, right = 1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese]{babel}
@@ -6,15 +7,21 @@
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{adjustbox}
+\geometry{margin=3cm}
+
 
 \titleformat{\section}
-{\LARGE\bfseries}
+{\Large\bfseries}
 {Bài \thesection: }
 {0em}
 {}
 
 \titleformat{\subsection}
-{\Large\bfseries}
+{\large\bfseries}
 {{\thesubsection} }
 {0em}
 {}
@@ -55,7 +62,7 @@
   \pagebreak
   \newgeometry{margin=3cm}
 
-  \section{Tính tổng hữu hạn}
+  \section{Tính tổng hữu hạn:}
 
   \subsection{Yêu cầu: Tính chính xác, không cho phép sai số hay xấp xỉ}
   \begin{enumerate}
@@ -140,7 +147,143 @@
     \item $ \sum^{n - 1}_{i = 0} \sum^{i - 1}_{j = 0} (i + j) $
   \end{enumerate}
 
-  \section{Đếm số phép gán và so sánh}
-  \section{Đếm số phép gán và so sánh}
-
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  \section{Đếm số phép gán và so sánh:}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Đếm số phép gán và so sánh:}
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics{Bai10}
+  \end{figure}
+  {\color{red} \emph{\textbf{Giải:}}} 
+  
+  \begin{flalign*}
+  	\text{Gọi } \alpha_i &\text{ là số vòng lặp của while trong} &&\\
+  	&= \text{số con j chạy từ 1 } \rightarrow s = s + \dfrac{1}{i} 
+  \end{flalign*}
+  Suy ra: $\alpha_i$ = s + $\dfrac{1}{i}$ - 1 + 1 = s + $\dfrac{1}{i}$ \\ 
+  Ta có: s $\in$ \{1 ; 1 + $\dfrac{1}{2}$ ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ ; … ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ + … + $\dfrac{1}{n}$ \} \\
+  Suy ra: $\alpha_i$ = $\sum_{k=1}^i \dfrac{1}{k}$, với i lần lượt là 1, 2, 3,..., n \\
+  \begin{flalign*}
+  	\text{Gán}(n) &= 3 + 3n + \sum_{i=1}^n 2\alpha_i &&\\
+  	&= 3 + 3n + 2\sum_{i=1}^n \sum_{k=1}^i \dfrac{1}{k} &&\\
+  	\text{SS(n) } &= n + 1 + \sum_{i=1}^n (\alpha_i + 1) &&\\
+  	&= 2n + 1 + \sum_{i=1}^n \sum_{k=1}^i \dfrac{1}{k} &&\\
+  \end{flalign*}
+  
+  \pagebreak
+  \section{Cho n,m là các số nguyên dương. Xem xét thuật toán sau đây, giả sử phép gán và phép so sánh đóng vai trò chủ yếu trong thời gian chạy của thuật toán:} 
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics{Bai11}
+  \end{figure}
+  {\color{red} \emph{\textbf{Giải}}} \\
+  $\textbf{a)}$ 
+  \begin{flalign*}
+  	\text{Gọi } \alpha_i &\text{ là số lần lặp của while trong} \\
+  	&\text{= số con j chạy từ 1 $\rightarrow$ n} \\
+  	&\text{= n} &&\\
+  \end{flalign*}
+  Câu lệnh if(i!=j) được thực hiện mn lần, điều kiện của if chỉ sai khi i = j.
+  \begin{itemize}
+  	\item Trường hợp 1: $n \leq m$ \\
+  	Trong mỗi vòng lặp của i trong khoảng [1, n], j cũng chạy trong khoảng [1, n], mỗi lần như vậy i = j một lần, tổng là n lần.
+  	Suy ra: lệnh sum = sum + 1 được thực hiện (mn – n) lần 
+  	\item Trường hợp 2: $n > m$ \\
+  	Trong mỗi vòng lặp của i trong khoảng [1, m], j cũng chạy trong khoảng [1, m], mỗi lần như vậy i = j một lần, tổng là m lần.
+  	Suy ra: lệnh sum = sum + 1 được thực hiện (mn – m) lần
+  \end{itemize}
+  Vậy: lệnh sum = sum + 1 được thực hiện (mn – min(m,n)) lần \\
+  \setlength{\baselineskip}{1.2\baselineskip}
+  Gán(n) = 2 + 2m + mn + (mn – min(m,n)) \\
+  So sánh(n) = m + 1 + m(n+1) + mn \\ 
+  
+  \pagebreak
+  $\textbf{b)}$ \\
+  Chương trình C++:
+  \begin{lstlisting}[language=C++]
+  	#include <iostream>
+  	
+  	int main() {
+  		int m, n;
+  		
+  		std::cout << "Enter m: ";
+  		std::cin >> m;
+  		std::cout << "Enter n: ";
+  		std::cin >> n;
+  		
+  		int s = 0;
+  		int i = 1;
+  		int demGan = 2;
+  		int demSS = 0;
+  		
+  		while (i <= m) {
+  			demSS += 1;
+  			int j = 1;
+  			while (j <= n) {
+  				demSS += 1;
+  				if (i != j) {
+  					s = s + 1;
+  					demGan += 1;
+  				}
+  				demSS += 1;
+  				j += 1;
+  				demGan += 1;
+  			}
+  			demSS += 1;
+  			i += 1;
+  			demGan += 2;
+  		}
+  		
+  		demSS += 1;
+  		
+  		std::cout << "Gan(n) = " << demGan << std::endl;
+  		std::cout << "SS(n) = " << demSS << std::endl;
+  		
+  		return 0;
+  	}
+  \end{lstlisting}
+  
+  \pagebreak
+  \begin{figure}[!]
+  	\centering \large Kết quả chạy chương trình
+  	\caption{(10,20)}
+  	\includegraphics{Bai11_1} 
+  	\caption{(35,24)}
+  	\includegraphics{Bai11_2} 
+  	\caption{(50,50)}
+  	\includegraphics{Bai11_3} 
+  	\caption{(200,100)}
+  	\includegraphics{Bai11_4} 
+  	\caption{(100,200)}
+  	\includegraphics{Bai11_5}
+  \end{figure}
+  
+  \pagebreak
+  \begin{center}
+  	\begin{tabular}{| m{10em} | m{1.5cm}| m{1.5cm} | m{1.5cm} | m{2cm} | m{2cm} |} 
+  		\hline
+  		Ví dụ 5 bộ dữ liệu thử nghiệm (n, m) & (10, 20) & (35, 24) & (50, 50) & (200, 100) & (100, 200) \\
+  		\hline
+  		Gán(n) = …(theo công thức đếm thủ công từ câu a) & 432 & 1706 & 5052 &	40102 &	40302 \\
+  		\hline
+  		Gán(n) kết quả khi chạy chương trình ở Bước 2 & 432 & 1706 & 5052 &	40102 &	40302 \\ 
+  		\hline
+  		So sánh(n) = …(theo  công thức đếm thủ công từ câu a) & 441	& 1729	& 5101	& 40201	& 40401 \\
+  		\hline
+  		So sánh(n) kết quả khi chạy chương trình & 441	& 1729	& 5101	& 40201	& 40401 \\
+  		\hline
+  	\end{tabular}
+  \end{center}
+  
+  \noindent Nhận xét kết quả so sánh: Số phép gán và số phép so sánh  khi tính bằng công thức từ câu a và khi chạy chương trình là bằng nhau.
 \end{document}
