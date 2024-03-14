@@ -161,6 +161,7 @@
 			       & = \frac{\sum^{n}_{i = 1} (i2^i + 2^i)}{2}                  \\
 			       & = \frac{[(n - 1)2^{n + 1} + 2] + [2^{n + 1} - 1 - 2^0]}{2} \\
 			       & = (n - 1)2^n + 2^n                                         \\
+			       & = n2^n
 		      \end{aligned} $
 
 	\item $ \begin{aligned}[t]
@@ -173,35 +174,83 @@
 \section{Đếm số phép gán và so sánh}
 
 \begin{lstlisting}
-  s = 0;
-  i = 1;
-  while ($ i \leq n $) do
-      j = 1
-      while ($ j \leq i^2 $) do
-          s = s + 1;
-          j = j + 1;
-      end do;
-      i = i + 1;
-  end do;
+    s = 0;                  $ 1g $
+    i = 1;                  $ 1g $
+    while ($ i \leq n $) do             $ (n + 1)ss $
+        j = 1;              $ ng $
+        while ($ j \leq i^2 $) do         $ (\alpha_i + 1)ss $
+            s = s + 1;      $ \alpha_i g $
+            j = j + 1;      $ \alpha_i g $
+        end do;
+        i = i + 1;          $ ng $
+    end do;
   \end{lstlisting}
+
+$ \begin{aligned}
+		\text{Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+		            & \alpha_i = \text{số con j chạy từ 1} \rightarrow i^2 \text{, bước tăng là 1} \\
+		            & \alpha_i = i^2 - 1 + 1                                                       \\
+		            & \alpha_i = i^2
+	\end{aligned} $
+
+\begin{align*}
+	\text{Gán}(n) & = 2 + 2n + \sum^{n}_{i = 1} 2 \alpha_i \\
+	              & = 2 + 2n + 2 \sum^{n}_{i = 1} i^2      \\
+	              & = 2 + 2n + \frac{n(n + 1)(2n + 1)}{3}
+\end{align*}
+
+\begin{align*}
+	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
+	      & = n + 1 + \sum^{n}_{i = 1} i^2 + \sum^{n}_{i = 1} 1 \\
+	      & = n + 1 + \frac{n(n + 1)(2n + 1)}{6} + n            \\
+	      & = 2n + 1 + \frac{n(n + 1)(2n + 1)}{6}
+\end{align*}
 
 \section{Đếm số phép gán và so sánh}
 
 \begin{lstlisting}
-  float Alpha(float x, long n)
-  {     long i = 1; float z = 0;
-        while ($ i <= n $)
-        {       long j = 1; float t = 1;
-                while ($ j <= i $)
-                {       t = t*x;
-                        j = 2*j;
-                }
-                z = z+i*t;
-                i=i+1;
-        }
-        return z;
-  }
+    float Alpha(float x, long n)
+    {     long i = 1; float z = 0;          $ 2g $
+          while ($ i \leq n $)                          $ (n + 1)ss $
+          {       long j = 1; float t = 1;  $ 2ng $
+                  while ($ j \leq i $)                  $ (\alpha_i + 1)ss $
+                  {       t = t*x;          $ \alpha_i g $
+                          j = 2*j;          $ \alpha_i g $
+                  }
+                  z = z+i*t;                $ ng $
+                  i=i+1;                    $ ng $
+          }
+          return z;                         $ 1g $
+    }
 \end{lstlisting}
+
+$ \begin{aligned}
+		\text{Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+		            & \alpha_i = \text{số con j chạy từ 1} \rightarrow i \text{, bước tăng theo tỉ lệ 2} \\
+                    & j \in \{ 1, 2, 4, \ldots, 2^k \} \\
+		            & \alpha_i = \text{đếm số con k:} \\
+	\end{aligned} $ \\
+
+\begin{align*}
+    & 1 \leq 2^k \leq i \\
+    \Leftrightarrow\; & 0 \leq k \leq \log_2{i} \\
+    \Rightarrow\; & k = \log_2{i} + 1
+\end{align*}
+
+\begin{align*}
+    \text{Gán}(n) & = 3 + 4n + \sum^{n}_{i = 1} 2 \alpha_i \\
+                  & = 3 + 4n + 2 \sum^{n}_{i = 1} (\log_2{i} + 1) \\
+                  & = 3 + 6n + 2 \sum^{n}_{i = 1} \log_2{i} \\
+                  & \approx 3 + 6n + 2 n \log_2{n} \\
+\end{align*}
+
+\begin{align*}
+	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
+          & = n + 1 + \sum^{n}_{i = 1} (\log_2{i} + 2)           \\
+          & = 3n + 1 + \sum^{n}_{i = 1} \log_2{i}           \\
+          & \approx 3n + 1 + n \log_2{n}           \\
+\end{align*}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đếm số phép gán và so sánh:}
