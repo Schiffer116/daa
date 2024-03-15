@@ -257,8 +257,190 @@ $ \begin{aligned}
 \section{Đếm số phép gán và so sánh:}
 \section{Đếm số phép gán và so sánh:}
 \section{Đếm số phép gán và so sánh:}
+
+\begin{lstlisting}
+i = 1; count=0;                  $ 2g $
+while ($ i \leq 4n $)           		$ 4n + 1ss $
+{
+    x = (n - i)(i - 3n);         $ 4ng $
+    y = i - 2n;                  $ 4ng $
+    j = 1;                       $ 4ng $
+    while ($ j \leq x $)                    $ (\alpha_i + 1)ss $
+    {
+        if ($ i \geq 2n $)                    $ \alpha_iss $
+            count = count - 2;
+        j++;                     $ \alpha_ig $
+    }
+    if (x > 0)                   $ 4nss $
+        if (y > 0)
+            count = count + 1;
+    i++;                         $ 4ng $
+}
+\end{lstlisting}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+    \text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+                & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
+                & \alpha_i = x = (n-i)(i-3n) \\
+\end{aligned} $ \\
+\text{-Bảng xét dấu:} \\
+\begin{table}[htb]
+    \begin{tabular}{c|c c c c c c c c c}
+        $i$ & $1$ &  & $n$ &  & $2n$ &  & $3n$  & & $4n$\\
+        \hline
+        $x = (n-i)(i-3n)$ &  & $-$ & $0$ & $+$ & $\vert$ & $+$ & $0$ & $-$\\
+        \hline
+        $y = i - 2n$ &  & $-$ & $\vert$ & $-$ & $0$ & $+$ & $\vert$ & $+$\\
+    \end{tabular}
+\end{table} \\
+\text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
+$\alpha_i =
+\begin{cases}
+x &\text{khi } x>0 \quad (n + 1 \leq i \leq 3n - 1)\\
+0 &\text{khi } x\leq 0
+\end{cases} \\$
+\text{-Câu lệnh if(y > 0) chỉ thực hiện khi x > 0} \\
+$\Rightarrow \text{Có } (3n - 1) - (n + 1) + 1 = (2n - 1)ss$ \\
+\text{-Câu lệnh count = count + 1 chỉ thực hiện khi x > 0, y > 0} \\
+$\Rightarrow \text{Có } (3n - 1) - (2n + 1) + 1 = (n - 1)g$ \\
+\text{-Câu lệnh count = count - 2 chỉ thực hiện khi i $\geq$ 2n, n + 1 $\leq$ i $\leq$ 3n - 1 (vào được while trong)} \\
+$\Rightarrow 2n \leq i \leq 3n - 1$ \\
+$\Rightarrow \text{Có } \alpha_ig \text{ khi }  2n \leq i \leq 3n - 1$\\
+\text{-Vậy:} \\
+$ \begin{aligned}
+    \text{Gán}(n) & = 2 + 4n + 4n + 4n + (n - 1) + 4n + \sum^{4n}_{i = 1} 2 \alpha_i \\
+        & = 17n + 1 + \sum^{3n-1}_{i = n + 1} x + \sum^{3n-1}_{i = 2n} x\\
+    SS(n) & = 4n + 1 + 4n + (2n - 1) + \sum^{4n}_{i = 1} (2 \alpha_i + 1) \\
+        & = 10n + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1 \\
+        & = 10n + 2 \sum^{3n-1}_{i = n + 1} x + 4n \\
+        & = 14n + 2 \sum^{3n-1}_{i = n + 1} x \\
+\end{aligned} $ \\
+
 \section{Đếm số phép gán và so sánh:}
+
+\begin{lstlisting}
+i = 1; count = 0;      		$ 2g $
+while ($i \leq 3n$)         $ 3n + 1ss $	
+{
+    x = 2n - i;        		$ 3ng $
+    y = i - n;         		$ 3ng $
+    j = 1;             		$ 3ng $
+    while ($j \leq x$)        	      $ (\alpha_i + 1)ss $ 
+    {
+    	if ($j \geq n$)			$ \alpha_iss $
+    	    count = count - 1;
+        j = j + 1;		$ \alpha_ig $
+    }
+    if (y > 0)			$ 3nss $
+        if (x > 0)
+            count = count + 1;
+    i = i + 1;			$ 3ng $
+}
+\end{lstlisting}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+				& \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
+				& \alpha_i = x = 2n - i \\
+\end{aligned} $ \\
+\text{-Bảng xét dấu:} \\
+\begin{table}[htb]
+    \begin{tabular}{c|c c c c c c c}
+        $i$ & $1$ &  & $n$ &  & $2n$ &  & $3n$ \\
+        \hline
+        $x = 2n - i$ &  & $+$ & $\vert$ & $+$ & $0$ & $-$ & \\
+        $y = i - n$ &  & $-$ & $0$ & $+$ & $\vert$ & $+$ &  \\
+    \end{tabular}
+\end{table} \\
+\text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
+$\alpha_i =
+\begin{cases}
+x &\text{khi } x>0 \quad (1 \leq i \leq 2n - 1)\\
+0 &\text{khi } x\leq 0
+\end{cases} \\$
+\text{-Câu lệnh if(x > 0) chỉ thực hiện khi y > 0} \\
+$\Rightarrow \text{Có } 3n - (n + 1) + 1 = 2nss$ \\
+\text{-Câu lệnh count = count + 1 chỉ thực hiện khi y > 0, x > 0} \\
+$\Rightarrow \text{Có } (2n - 1) - (n + 1) + 1 = (n - 1)g$ \\
+\text{-Câu lệnh count = count - 1 chỉ thực hiện khi j $\geq$ n, j $\leq$ x (vào được while trong)} \\
+$\Rightarrow n \leq j \leq 2n - i$ \\
+$\Rightarrow n \leq 2n - i \Leftrightarrow i \leq n$ \\
+$\Rightarrow \text{Có } (2n - i) - n + 1 = (n - i + 1)g \text{ khi } i \leq n$\\
+\text{-Vậy:} \\
+$ \begin{aligned}
+	\text{Gán}(n) & = 2 + 3n + 3n + 3n + 3n + (n - 1) + \sum^{3n}_{i = 1} (\alpha_i + n - i + 1)\\
+		& = 13n + 1 + \sum^{2n-1}_{i = 1} x + \sum^{n}_{i = 1} (n - i + 1) \\
+		& = 13n + 1 + \sum^{2n-1}_{i = 1} (2n - i) + \sum^{n}_{i = 1} (n - i + 1) \\
+\end{aligned} $ \\
+$ \begin{aligned}
+	SS(n) & = 3n + 1 + 3n + 2n + \sum^{3n}_{i = 1} (2 \alpha_i + 1) \\
+		& = 8n + 1 +\sum^{2n-1}_{i = 1} 2x + \sum^{3n}_{i = 1} 1 \\
+		& = 8n + 1 +\sum^{2n-1}_{i = 1} 2(2n - i) + 3n \\
+		& = 11n + 1 +\sum^{2n-1}_{i = 1} (4n - 2i) \\
+\end{aligned} $ \\
+
 \section{Đếm số phép gán và so sánh:}
+\begin{lstlisting}
+sum = 0; i = 1; idx = -1;              $ 3g $
+while($i \leq n$)                              $ (n + 1)ss $
+{
+   j = 1;                              $ ng $
+   while($j \leq n$)                           $ (\alpha_i + 1)ss $
+   {
+      if(($i == j$) && ($i + j == n + 1$))
+         idx = i;
+      sum = sum + a[i][j];             $ \alpha_ig $
+      j++;                             $ \alpha_ig $
+   }
+   i++;
+}
+if(idx != -1)                          $ 1ss $
+   sum = sum - a[idx][idx];
+\end{lstlisting}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+				& \alpha_i = \text{số con j với j chạy từ 1} \rightarrow n \text{, bước tăng là 1} \\
+				& \alpha_i = n \\
+\end{aligned} $ \\
+\text{-Câu lệnh if(i == j) sẽ luôn được thực hiện khi bắt đầu vòng lặp while trong} \\
+$\Rightarrow \text{Có } \alpha_iss$ \\
+\text{-Câu lệnh if(i + j == n + 1) chỉ thực hiện khi i = j} \\
+$\text{Có 1 trường hợp duy nhất} \Rightarrow \text{Có } 1ss$ \\
+\text{-Câu lệnh idx = i chỉ thực hiện khi i = j, i + j = n + 1}  $\Leftrightarrow$ \text{ 2j = n + 1}\\
+\text{-Gọi x là số phép gán của câu lệnh idx = i} \\
+$x =
+\begin{cases}
+1 &\text{khi n lẻ} \\
+0 &\text{khi n chẵn}
+\end{cases} \\$
+\text{-Câu lệnh sum = sum - a[idx][idx] chỉ thực hiện khi idx != -1, tức là câu lệnh idx = i} \\
+\text{phải được thực hiện} \\
+$\Rightarrow \text{Thỏa điều kiện i = j, i + j = n + 1 } \Leftrightarrow \text{ 2j = n + 1} \\$
+\text{-Gọi y là số phép gán của câu lệnh sum = sum - a[idx][idx]} \\
+$y =
+\begin{cases}
+1 &\text{khi n lẻ} \\
+0 &\text{khi n chẵn}
+\end{cases} \\$
+\text{Vậy:} \\
+$ \begin{aligned}
+	\text{Gán}(n) & = 3 + 2n + y + \sum^{n}_{i = 1} (2 \alpha_i + x) \\
+		& = 
+		\begin{cases}
+		3 + 2n + 1 + \sum^{n}_{i = 1} (2n + 1) &\text{khi n lẻ} \\
+		3 + 2n + \sum^{n}_{i = 1} 2n &\text{khi n chẵn}
+		\end{cases} \\
+		& =
+		\begin{cases}
+		4 + 2n + 2n^2 + n = 4 + 3n + 2n^2 &\text{khi n lẻ} \\
+		3 + 2n + 2n^2 &\text{khi n chẵn}
+		\end{cases} \\
+	SS(n) & = n + 1 + 1 + \sum^{n}_{i = 1} (\alpha_i + 1 + \alpha_i + 1) \\
+		& = n + 2 + \sum^{n}_{i = 1} (2n + 2) \\
+		& = n + 2 + 2n^2 + 2n \\
+		& = 2 + 3n + 2n^2 \\
+\end{aligned} $ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đếm số phép gán và so sánh:}
 
