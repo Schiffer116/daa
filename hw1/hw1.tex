@@ -586,35 +586,59 @@ $ \begin{aligned}
 \end{aligned} $ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đếm số phép gán và so sánh:}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics{Bai10}
-\end{figure}
-{\color{red} \emph{\textbf{Giải:}}}
-
-\begin{flalign*}
-	\text{Gọi } \alpha_i & \text{ là số vòng lặp của while trong}                        &  & \\
-	                     & = \text{số con j chạy từ 1 } \rightarrow s = s + \dfrac{1}{i}
-\end{flalign*}
+\begin{lstlisting}
+i = 1; ret = 0; s = 0;     $ 3g $
+while($ i \leq n $)        		 $ (n + 1)ss $
+{
+   j = 1;		   $ ng $
+   s = s + 1/i;		   $ ng $
+   while($ j \leq s $)		 $ (\alpha_i + 1)ss $
+   {
+      ret = ret + i*j;	   $ \alpha_iss $
+      j = j + 1;	   $ \alpha_iss $
+   }
+   i = i + 1;	           $ ng $
+}
+\end{lstlisting}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+	\text{-Gọi } \alpha_i & \text{ là số vòng lặp của while trong}                        &  & \\
+	              \alpha_i & = \text{số con j chạy từ 1 } \rightarrow s = s + \dfrac{1}{i}
+\end{aligned} $ \\
 Suy ra: $\alpha_i$ = s + $\dfrac{1}{i}$ - 1 + 1 = s + $\dfrac{1}{i}$ \\
 Ta có: s $\in$ \{1 ; 1 + $\dfrac{1}{2}$ ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ ; … ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ + … + $\dfrac{1}{n}$ \} \\
-Suy ra: $\alpha_i$ = $\sum_{k=1}^i \dfrac{1}{k}$, với i lần lượt là 1, 2, 3,..., n \\
-\begin{flalign*}
-	\text{Gán}(n) & = 3 + 3n + \sum_{i=1}^n 2\alpha_i                  &  & \\
-	              & = 3 + 3n + 2\sum_{i=1}^n \sum_{k=1}^i \dfrac{1}{k} &  & \\
-	\text{SS(n) } & = n + 1 + \sum_{i=1}^n (\alpha_i + 1)              &  & \\
-	              & = 2n + 1 + \sum_{i=1}^n \sum_{k=1}^i \dfrac{1}{k}  &  & \\
-\end{flalign*}
+Suy ra: $\alpha_i$ = $\sum_{k=1}^i \dfrac{1}{k}$ = $\ln i + \gamma$ ($\gamma \approx 0.5772$), với i lần lượt là 1, 2, 3,..., n \\
+\text{-Vậy: } \\
+$ \begin{aligned}
+	\text{Gán}(n) & = 3 + 3n + \sum_{i=1}^n 2\alpha_i  \\
+	              & = 3 + 3n + 2\sum_{i=1}^n (\ln i + \gamma) \\
+				  & = 3 + 3n + 2\sum_{i=1}^n \ln i + 2\sum_{i=1}^n \gamma \\
+				  & = 3 + 3n + 2\ln n! + 2n \gamma \text{ }(\gamma \approx 0.5772) \\
+	\text{SS(n) } & = n + 1 + \sum_{i=1}^n (\alpha_i + 1) \\
+	              & = n + 1 + \sum_{i=1}^n (\ln i + \gamma + 1) \\
+				  & = n + 1 + \sum_{i=1}^n \ln i + \sum_{i=1}^n \gamma + \sum_{i=1}^n 1 \\
+				  & = n + 1 + \ln n! + n \gamma + n \\
+				  & = 2n + 1 + \ln n! + n \gamma \text{ }(\gamma \approx 0.5772) \\
+\end{aligned} $ \\
 
-\pagebreak
 \section{Cho n,m là các số nguyên dương. Xem xét thuật toán sau đây, giả sử phép gán và phép so sánh đóng vai trò chủ yếu trong thời gian chạy của thuật toán:}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics{Bai11}
-\end{figure}
-{\color{red} \emph{\textbf{Giải}}} \\
+\begin{lstlisting}
+sum = 0;		$ 1g $
+i = 1;			$ 1g $
+while($ i \leq m $)		$ (m+1)ss $
+{
+   j = 1;		$ mg $
+   while($ j \leq n $)	      $ (\alpha_i + 1)ss $
+   {
+      if(i != j)	$ \alpha_i ss $
+         sum = sum + 1;
+      j++;		$ \alpha_ig $
+   }
+   i++;			$ mg $
+}
+\end{lstlisting}
+\textbf{Lời giải:} \\
 $\textbf{a)}$
 \begin{flalign*}
 	\text{Gọi } \alpha_i & \text{ là số lần lặp của while trong}            \\
