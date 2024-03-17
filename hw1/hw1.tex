@@ -255,23 +255,23 @@ $ \begin{aligned}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
-	sum = 0;i = 1;   2g
-	while($i  \leq n$)    n+1ss 
-	{    
-		j = n - i;   $ ng $
-		while ($ j  \leq 2i $) $ (\alpha_i + 1)ss $
-		{
-			sum = sum + i*j; $ \alpha_i g $
-			j = j +2; $ \alpha_i g $		
-		}
-		k = i; $ ng $
-		while (k > 0) $ (\beta_i + 1) ss $
-		{
-			sum = sum +1; $ \beta_i g $
-			k = k / 2; $ \beta_i g $
-		}
-			i = i + 1; $ n g $
-	}
+sum = 0;i = 1;		 $ 2g $
+while($i  \leq n$)			$ (n+1)ss $ 
+{    
+   j = n - i;		  $ ng $
+   while ($ j  \leq 2i $)		$ (\alpha_i + 1)ss $
+   {
+      sum = sum + i*j;	  $ \alpha_i g $
+      j = j +2;           $ \alpha_i g $		
+   }
+   k = i;             	  $ ng $
+   while (k > 0)	$ (\beta_i + 1) ss $
+   {
+      sum = sum +1;	  $ \beta_i g $
+      k = k / 2;	  $ \beta_i g $
+   }
+   i = i + 1;		  $ n g $
+}
 	\end{lstlisting}
 	\textbf{Lời giải:} \\
 	$\bullet$ Gọi $\alpha_i$ là số lần lặp của while trong thứ nhất (Xét độc lập với vòng while bên ngoài)\\
@@ -305,20 +305,21 @@ $ \begin{aligned}
 			& = 1 + 3n + \sum^{n}_{i = 1} \frac{3i}{2} - \sum^{n}_{i = 1} \frac{n}{2}+\sum^{n}_{i = 1}\log_2 i\\
 			& = 1 + 3n + \frac{3n(n+1)}{4}+ \frac{n^2}{2}+ \frac{3n(n+1)}{4} + n\log_2n\\
 	\end{aligned} $ \\
+
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
-	i = 1;   1g
-	res = 0; ig
-	while($i  \leq n$) do   n+1ss    
-		j = 1;   $ ng $
-		k = 1;   $ ng $
-		while ($ j  \leq i $) do $ (\alpha_i + 1)ss $
-			res = res + i*j; $ \alpha_i g $
-			k = k + 2;       $ \alpha_i g $
-			j = j +2; 		 $ \alpha_i g $		
-		endw
-			i = i + 1; 		 $ ng $
-	endw
+i = 1;			$ 1g $
+res = 0;		$ 1g $
+while($i  \leq n$) do	      $ (n+1)ss $    
+   j = 1;		$ ng $
+   k = 1;		$ ng $
+   while ($ j  \leq i $) do	      $ (\alpha_i + 1)ss $
+      res = res + i*j;	$ \alpha_i g $
+      k = k + 2;	$ \alpha_i g $
+      j = j + k;		$ \alpha_i g $		
+    endw
+   i = i + 1;		$ ng $
+endw
 	\end{lstlisting}
 	\textbf{Lời giải:} \\
 	$\bullet$ Gọi $\alpha_i$ là số lần lặp của while trong(Xét độc lập với vòng while bên ngoài)\\
@@ -340,23 +341,24 @@ $ \begin{aligned}
 			& = 1 + n + 3\sum^{n}_{i = 1}(\sqrt i + 1)\\
 			& = 1 + 2n + 2n^\frac{3}{2}\\
 	\end{aligned} $ \\
+
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
-	i = 1;					  $ 1g $
-	count=0;                  $ 1g $
-	while ($ i \leq 4n $)           		$ 4n + 1ss $
-	{
-		x = (n - i)(i - 3n);         $ 4ng $
-		y = i - 2n;                  $ 4ng $
-		j = 1;                       $ 4ng $
-		while ($ j \leq x $)                    $ (\alpha_i + 1)ss $
-		{
-			if ($ i \geq 2n $)                    $ \alpha_iss $
-				count = count - 2;
-			j = j + 1                    $ \alpha_ig $
-		}
-		i = i + 1;                         $ 4ng $
-	}
+i = 1;			      $ 1g $
+count = 0;		      $ 1g $
+while ($ i \leq 4n $)		    $ (4n + 1)ss $
+{
+   x = (n - i)(i - 3n);       $ 4ng $
+   y = i - 2n;		      $ 4ng $
+   j = 1;                     $ 4ng $
+   while ($ j \leq x $)		     $ (\alpha_i + 1)ss $
+   {
+      if ($ i \geq 2y $)      	      $ \alpha_iss $
+         count = count - 2;
+      j = j + 1;              $ \alpha_ig $
+   }
+   i = i + 1;        	      $ 4ng $
+}
 	\end{lstlisting}
 	\textbf{Lời giải:} \\
 	$ \begin{aligned}
