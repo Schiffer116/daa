@@ -185,26 +185,26 @@
         i = i + 1;          $ ng $
     end do;
   \end{lstlisting}
-
+\textbf{Lời giải:} \\
 $ \begin{aligned}
-		\text{Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-		            & \alpha_i = \text{số con j chạy từ 1} \rightarrow i^2 \text{, bước tăng là 1} \\
-		            & \alpha_i = i^2 - 1 + 1                                                       \\
-		            & \alpha_i = i^2
-	\end{aligned} $
-
-\begin{align*}
+	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+				& \alpha_i = \text{số con j chạy từ 1} \rightarrow i^2 \text{, bước tăng là 1} \\
+				& \alpha_i = i^2 - 1 + 1                                                       \\
+				& \alpha_i = i^2
+	\end{aligned} $ \\
+\text{-Vậy: } \\
+$ \begin{aligned}
 	\text{Gán}(n) & = 2 + 2n + \sum^{n}_{i = 1} 2 \alpha_i \\
 	              & = 2 + 2n + 2 \sum^{n}_{i = 1} i^2      \\
 	              & = 2 + 2n + \frac{n(n + 1)(2n + 1)}{3}
-\end{align*}
+\end{aligned} $ \\
 
-\begin{align*}
+$ \begin{aligned}
 	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
 	      & = n + 1 + \sum^{n}_{i = 1} i^2 + \sum^{n}_{i = 1} 1 \\
 	      & = n + 1 + \frac{n(n + 1)(2n + 1)}{6} + n            \\
 	      & = 2n + 1 + \frac{n(n + 1)(2n + 1)}{6}
-\end{align*}
+\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh}
 
@@ -223,39 +223,39 @@ $ \begin{aligned}
           return z;                         $ 1g $
     }
 \end{lstlisting}
-
+\textbf{Lời giải: } \\
 $ \begin{aligned}
-		\text{Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
 		            & \alpha_i = \text{số con j chạy từ 1} \rightarrow i \text{, bước tăng theo tỉ lệ 2} \\
-                    & j \in \{ 1, 2, 4, \ldots, 2^k \} \\
-		            & \alpha_i = \text{đếm số con k:} \\
 	\end{aligned} $ \\
-
-\begin{align*}
+	-Khi đó:\\
+	Các giá trị có thể có của j: \\ \\
+	$ j \in \{ 1, 2, 4, \ldots, 2^k, \ldots \leq i \} $ \\ \\
+	$ \Rightarrow \alpha_i = \text{đếm số con k:} $ \\ 
+$ \begin{aligned}
     & 1 \leq 2^k \leq i \\
     \Leftrightarrow\; & 0 \leq k \leq \log_2{i} \\
     \Rightarrow\; & k = \log_2{i} + 1
-\end{align*}
-
-\begin{align*}
+\end{aligned} $ \\
+\text{-Vậy: } \\
+$ \begin{aligned}
     \text{Gán}(n) & = 3 + 4n + \sum^{n}_{i = 1} 2 \alpha_i \\
                   & = 3 + 4n + 2 \sum^{n}_{i = 1} (\log_2{i} + 1) \\
                   & = 3 + 6n + 2 \sum^{n}_{i = 1} \log_2{i} \\
                   & \approx 3 + 6n + 2 n \log_2{n} \\
-\end{align*}
-
-\begin{align*}
+\end{aligned} $ \\
+$ \begin{aligned}
 	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
           & = n + 1 + \sum^{n}_{i = 1} (\log_2{i} + 2)           \\
           & = 3n + 1 + \sum^{n}_{i = 1} \log_2{i}           \\
           & \approx 3n + 1 + n \log_2{n}           \\
-\end{align*}
+\end{aligned} $ \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
-sum = 0;i = 1;		 $ 2g $
+sum = 0;i = 1;		  $ 2g $
 while($i  \leq n$)			$ (n+1)ss $ 
 {    
    j = n - i;		  $ ng $
@@ -274,27 +274,28 @@ while($i  \leq n$)			$ (n+1)ss $
 }
 	\end{lstlisting}
 	\textbf{Lời giải:} \\
-	$\bullet$ Gọi $\alpha_i$ là số lần lặp của while trong thứ nhất (Xét độc lập với vòng while bên ngoài)\\
-	$\quad${ 
-	- $\alpha_i$ = số con j chạy từ n - i $\rightarrow$ 2i, bước tăng 2 \\
-	- Khi đó:\\
-	$\alpha_i$ = $\frac{2i - n + i}{2}$ + 1 = $\frac{3i - n + 2}{2}$\\
-	- Hàm While thực hiện khi j $\leq$ 2i $\Leftrightarrow$ n - i $\leq$ 2i $\Leftrightarrow$ $\frac{n}{3}$ $\leq$ i\\  
-	- Do đó: $\alpha_i =
+	$ \begin{aligned}
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong thứ nhất (Xét độc lập với vòng while bên ngoài)} \\
+					& \alpha_i = \text{ số con j chayj từ } n - i \rightarrow 2i \text{, bước tăng là 2} \\
+	\end{aligned} $ \\
+	-Khi đó:\\ \\
+	$\alpha_i = \dfrac{2i - n + i}{2} + 1 = \dfrac{3i - n + 2}{2}$\\ \\
+	-Hàm While thực hiện khi j $\leq$ 2i $\Leftrightarrow$ n - i $\leq$ 2i $\Leftrightarrow$ $\frac{n}{3}$ $\leq$ i\\ \\
+	-Do đó: $\alpha_i =
 	\begin{cases}
-	\frac{3i - n + 2}{2} &\text{khi } \quad (\frac{n}{3} \leq i)\\
+	\dfrac{3i - n + 2}{2} &\text{khi } \quad (\frac{n}{3} \leq i)\\
 	0 &\text{khi } i < \frac{n}{3}
-	\end{cases} \\$
-
-	$\bullet$ Gọi $\beta_i$ là số lần lặp của while trong thứ hai (Xét độc lập với vòng while bên ngoài)\\
-	$\quad${ 
-	- $\beta_i$ = số con k chạy từ i $\rightarrow$ 1, bước giảm $\frac{k}{2}$  \\
-	- Khi đó:\\
-	- Các giá trị có thể có của k: \\
-     k $\in$ \{ i, $\frac{i}{2}, \frac{i}{2^2}, \ldots, \frac{i}{2^k}, \ldots, >0$ \} \\  $\frac{2i - n + i}{2}$ + 1 = $\frac{3i - n + 2}{2}$\\
-	- Hàm While thực hiện khi $1 \leq \frac{1}{2^k}  \Leftrightarrow k \leq \log_2 i$\\  
+	\end{cases} \\ \\ $
+	$ \begin{aligned}
+		\text{-Gọi } & \beta_i \text{ là số lần lặp của while trong thứ hai (Xét độc lập với vòng while bên ngoài)} \\
+					& \beta_i = \text{ số con k chạy từ } i \rightarrow 1 \text{, bước giảm là } \frac{k}{2}
+	\end{aligned} $ \\
+	-Khi đó:\\
+	Các giá trị có thể có của k: \\ \\
+     k $\in$ \{ i, $\dfrac{i}{2}, \dfrac{i}{2^2}, \ldots, \dfrac{i}{2^k}, \ldots >0$ \} \\ \\
+	-Hàm While thực hiện khi $1 \leq \frac{1}{2^k}  \Leftrightarrow k \leq \log_2 i$\\  
 	$\Rightarrow \beta_i$ = số \space con k thõa mãn = $0 \leq k \leq \log_2 i = \log_2 i+1$\\
-	- Vậy: \\
+	-Vậy: \\
 	$ \begin{aligned}
 		\text{Gán}(n) & = 2 + 3n + \sum^{\frac{n}{3} }_{i = 1} 2 \alpha_i  + \sum^{n}_{i = 1} 2 \beta_i\\
 		& = 2 + 3n + \sum^{\frac{n}{3} }_{i = 1} (3i -n + 2) + \sum^{n}_{i = 1}(\log_2 i+1)\\
@@ -316,30 +317,34 @@ while($i  \leq n$) do	      $ (n+1)ss $
    while ($ j  \leq i $) do	      $ (\alpha_i + 1)ss $
       res = res + i*j;	$ \alpha_i g $
       k = k + 2;	$ \alpha_i g $
-      j = j + k;		$ \alpha_i g $		
+      j = j + k;	$ \alpha_i g $		
     endw
    i = i + 1;		$ ng $
 endw
 	\end{lstlisting}
 	\textbf{Lời giải:} \\
-	$\bullet$ Gọi $\alpha_i$ là số lần lặp của while trong(Xét độc lập với vòng while bên ngoài)\\
-	$\quad${ 
-	- $\alpha_i$ = số con j chạy từ 1 $\rightarrow$ i, bước tăng (k + 2) \\
-	- Khi đó:\\
-	- Các giá trị có thể có của j: \\
+	$ \begin{aligned}
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong(Xét độc lập với vòng while bên ngoài)} \\
+					& \alpha_i = \text{ số con j chay j chạy từ 1} \rightarrow i \text{, bước tăng là (k + 2)} \\
+	\end{aligned} $ \\
+	-Khi đó:\\
+	Các giá trị có thể có của j: \\
     j $\in \{ 1, 2^2, 3^2, \ldots, k^2, \ldots, \leq i$ \}\\
 	= Số con k thõa $ j \leq i$ (Khi đó hàm While trong được thực hiện)\\ 
 	$\Rightarrow k^2 \leq i$\\
 	$\Rightarrow 1 \leq k \leq \sqrt{i}$
 	$\Rightarrow \alpha_i = \sqrt{i}$\\
-	- Vậy: \\
+	-Vậy: \\
 	$ \begin{aligned}
 		\text{Gán}(n) & = 2 + 3n + 3\sum^{n}_{i = 1}\alpha_i\\
 			& = 2 + 3n + 3\sum^{n}_{i = 1}\sqrt i\\
+			& \approx 2 + 3n + 3 \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1} \\
 			& = 2 + 3n + 2n^\frac{3}{2}\\
 			\\SS(n) & = 1 + n + \sum^{n}_{i = 1}(\alpha_i + 1)\\
-			& = 1 + n + 3\sum^{n}_{i = 1}(\sqrt i + 1)\\
-			& = 1 + 2n + 2n^\frac{3}{2}\\
+			& = 1 + n + \sum^{n}_{i = 1}(\sqrt i + 1)\\
+			& = 1 + n + \sum^{n}_{i = 1}\sqrt i + \sum^{n}_{i = 1} 1 \\
+			& \approx 1 + n + \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1} + n \\
+			& = 1 + 2n + \dfrac{2}{3}n^\frac{3}{2}\\
 	\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh:}
@@ -388,9 +393,10 @@ while ($ i \leq 4n $)		    $ (4n + 1)ss $
 	\text{-Vậy:} \\
 	$ \begin{aligned}
 		\text{Gán}(n) & = 2 + 16n + \sum^{4n}_{i = 1} 2 \alpha_i \\
-			& = 16n + 2 + \sum^{3n-1}_{i = n + 1} x\\
+			& = 16n + 2 + 2 \sum^{3n-1}_{i = n + 1} x\\
 		SS(n) & = 4n + 1 + \sum^{4n}_{i = 1} (2 \alpha_i + 1) \\
 			& = 4n + 1 + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1 \\
+			& = 4n + 1 + 2\sum^{3n-1}_{i = n + 1} x + 4n \\
 			& = 8n + 1 + 2\sum^{3n-1}_{i = n + 1} x \\
 	\end{aligned} $ \\
 \section{Đếm số phép gán và so sánh:}
