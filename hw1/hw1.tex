@@ -10,6 +10,7 @@
 \usepackage{listings}
 \usepackage{array}
 \usepackage{adjustbox}
+\usepackage{booktabs}
 \geometry{margin=3cm}
 
 \titleformat{\section}
@@ -43,7 +44,7 @@
   \textbf{BÀI TẬP MÔN PHÂN TÍCH VÀ THIẾT KẾ THUẬT TOÁN} \\
   \vspace{1cm}
   \Large \textbf{HOMEWORK \#01:} \\
-  \text{ĐÁNH GIÁ THUẬT TOÁN DÙNG KỸ THUẬT TOÁN SƠ CẤP}
+  \large \text{ĐÁNH GIÁ THUẬT TOÁN DÙNG KỸ THUẬT TOÁN SƠ CẤP}
   \vfill
 }
 
@@ -145,14 +146,14 @@
 			      \sum^{n - 1}_{i = 0} {(i^2 + 1)}^2
 			       & = \sum^{n - 1}_{i = 0} (i^4 + 2i^2 + 1)                                         \\
 			       & = \sum^{n - 1}_{i = 0} i^4 + \sum^{n - 1}_{i = 0} 2i^2 + \sum^{n - 1}_{i = 0} 1 \\
-			       & \approx \frac{(n-1)^{5}}{5} + \frac{(n - 1)n(2n - 1)}{3} + n                        \\
+                   & \approx \frac{{(n-1)}^5}{5} + \frac{(n - 1)n(2n - 1)}{3} + n                    \\
 		      \end{aligned} $
 
 	\item $ \begin{aligned}[t]
 			      \sum^{n - 1}_{i = 2} \lg{i^2}
-			       & = 2 \sum^{n - 1}_{i = 2} \lg{i}                 \\
-			       & = 2 (\sum^{n - 1}_{i = 1} \lg{i} - \lg{1})      \\
-			       & \approx 2(n - 1)\lg (n-1) \\
+			       & = 2 \sum^{n - 1}_{i = 2} \lg{i}            \\
+			       & = 2 (\sum^{n - 1}_{i = 1} \lg{i} - \lg{1}) \\
+			       & \approx 2(n - 1)\lg (n-1)                  \\
 		      \end{aligned} $
 
 	\item $ \begin{aligned}[t]
@@ -165,11 +166,11 @@
 
 	\item $ \begin{aligned}[t]
 			      \sum^{n - 1}_{i = 0} \sum^{i - 1}_{j = 0} (i + j)
-			       & = \sum^{n - 1}_{i = 0} (i^2 + \frac{(i - 1)i}{2})   \\
-				   & = \sum^{n - 1}_{i = 0} (\frac{3}{2} i^2 - \frac{1}{2} i) \\
-				   & = \frac{3}{2} \sum^{n - 1}_{i = 0} i^2 - \frac{1}{2} \sum^{n - 1}_{i = 0} i \\
-				   & = \frac{3}{2}.\frac{(n - 1)n(2n - 1)}{6} - \frac{1}{2}.\frac{n(n - 1)}{2} \\
-				   & = \frac{n^3}{2} - n^2 + \frac{n}{2} \\
+			       & = \sum^{n - 1}_{i = 0} (i^2 + \frac{(i - 1)i}{2})                           \\
+			       & = \sum^{n - 1}_{i = 0} (\frac{3}{2} i^2 - \frac{1}{2} i)                    \\
+			       & = \frac{3}{2} \sum^{n - 1}_{i = 0} i^2 - \frac{1}{2} \sum^{n - 1}_{i = 0} i \\
+			       & = \frac{3}{2}.\frac{(n - 1)n(2n - 1)}{6} - \frac{1}{2}.\frac{n(n - 1)}{2}   \\
+			       & = \frac{n^3}{2} - n^2 + \frac{n}{2}                                         \\
 		      \end{aligned} $
 \end{enumerate}
 
@@ -187,26 +188,29 @@
         i = i + 1;          $ ng $
     end do;
   \end{lstlisting}
-\textbf{Lời giải:} \\
-$ \begin{aligned}
-	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-				& \alpha_i = \text{số con j chạy từ 1} \rightarrow i^2 \text{, bước tăng là 1} \\
-				& \alpha_i = i^2 - 1 + 1                                                       \\
-				& \alpha_i = i^2
-	\end{aligned} $ \\
-\text{-Vậy: } \\
-$ \begin{aligned}
-	\text{Gán}(n) & = 2 + 2n + \sum^{n}_{i = 1} 2 \alpha_i \\
-	              & = 2 + 2n + 2 \sum^{n}_{i = 1} i^2      \\
-	              & = 2 + 2n + \frac{n(n + 1)(2n + 1)}{3}
-\end{aligned} $ \\
+\textbf{Lời giải:}
 
 $ \begin{aligned}
-	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
-	      & = n + 1 + \sum^{n}_{i = 1} i^2 + \sum^{n}_{i = 1} 1 \\
-	      & = n + 1 + \frac{n(n + 1)(2n + 1)}{6} + n            \\
-	      & = 2n + 1 + \frac{n(n + 1)(2n + 1)}{6}
-\end{aligned} $ \\
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
+		             & \alpha_i = \text{số con j chạy từ 1} \rightarrow i^2 \text{, bước tăng là 1} \\
+		             & \alpha_i = i^2 - 1 + 1                                                       \\
+		             & \alpha_i = i^2
+	\end{aligned} $
+
+\text{-Vậy: }
+
+$ \begin{aligned}
+		\text{Gán}(n) & = 2 + 2n + \sum^{n}_{i = 1} 2 \alpha_i \\
+		              & = 2 + 2n + 2 \sum^{n}_{i = 1} i^2      \\
+		              & = 2 + 2n + \frac{n(n + 1)(2n + 1)}{3}
+	\end{aligned} $
+
+$ \begin{aligned}
+		SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
+		      & = n + 1 + \sum^{n}_{i = 1} i^2 + \sum^{n}_{i = 1} 1 \\
+		      & = n + 1 + \frac{n(n + 1)(2n + 1)}{6} + n            \\
+		      & = 2n + 1 + \frac{n(n + 1)(2n + 1)}{6}
+	\end{aligned} $
 
 \section{Đếm số phép gán và so sánh}
 
@@ -225,90 +229,96 @@ $ \begin{aligned}
           return z;                         $ 1g $
     }
 \end{lstlisting}
-\textbf{Lời giải: } \\
-$ \begin{aligned}
-		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-		            & \alpha_i = \text{số con j chạy từ 1} \rightarrow i \text{, bước tăng theo tỉ lệ 2} \\
-	\end{aligned} $ \\
-	-Khi đó:\\
-	Các giá trị có thể có của j: \\ \\
-	$ j \in \{ 1, 2, 4, \ldots, 2^k, \ldots \leq i \} $ \\ \\
-	$ \Rightarrow \alpha_i = \text{đếm số con k:} $ \\ 
-$ \begin{aligned}
-    & 1 \leq 2^k \leq i \\
-    \Leftrightarrow\; & 0 \leq k \leq \log_2{i} \\
-    \Rightarrow\; & k = \log_2{i} + 1
-\end{aligned} $ \\
-\text{-Vậy: } \\
-$ \begin{aligned}
-    \text{Gán}(n) & = 3 + 4n + \sum^{n}_{i = 1} 2 \alpha_i \\
-                  & = 3 + 4n + 2 \sum^{n}_{i = 1} (\log_2{i} + 1) \\
-                  & = 3 + 6n + 2 \sum^{n}_{i = 1} \log_2{i} \\
-                  & \approx 3 + 6n + 2n \log_2n \\
-\end{aligned} $ \\
-$ \begin{aligned}
-	SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)           \\
-          & = n + 1 + \sum^{n}_{i = 1} (\log_2{i} + 2)           \\
-          & = 3n + 1 + \sum^{n}_{i = 1} \log_2{i}           \\
-          & \approx 3n + 1 + n \log_2n           \\
-\end{aligned} $ \\
+\textbf{Lời giải:}
+\vspace{\baselineskip}
 
+$ \begin{aligned}
+		\text{Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                                    \\
+		             & \alpha_i = \text{số con j chạy từ 1} \rightarrow i \text{, bước tăng theo tỉ lệ 2} \\
+	\end{aligned} $
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Khi đó các giá trị có thể có của j là:
+
+\hspace{1cm} $ j \in \lbrace 1, 2, 4, \ldots, 2^k | j \leq i \rbrace $
+
+$ \Rightarrow \alpha_i = \text{đếm số con k:} $
+
+\begin{align*}
+		                  & 1 \leq 2^k \leq i       \\
+		\Leftrightarrow\; & 0 \leq k \leq \log_2{i} \\
+		\Rightarrow\;     & k = \log_2{i} + 1
+	\end{align*}
+
+$\hspace{1cm} \begin{aligned}
+		\text{Gán}(n) & = 3 + 4n + \sum^{n}_{i = 1} 2 \alpha_i        \\
+		              & = 3 + 4n + 2 \sum^{n}_{i = 1} (\log_2{i} + 1) \\
+		              & = 3 + 6n + 2 \sum^{n}_{i = 1} \log_2{i}       \\
+		              & \approx 3 + 6n + 2n \log_2n                   \\
+	\end{aligned} $
+
+$\hspace{1cm} \begin{aligned}
+		SS(n) & = n + 1 + \sum^{n}_{i = 1} (\alpha_i + 1)  \\
+		      & = n + 1 + \sum^{n}_{i = 1} (\log_2{i} + 2) \\
+		      & = 3n + 1 + \sum^{n}_{i = 1} \log_2{i}      \\
+		      & \approx 3n + 1 + n \log_2n                 \\
+	\end{aligned} $
+
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
-sum = 0;i = 1;		  $ 2g $
-while($i  \leq n$)			$ (n+1)ss $ 
-{    
-   j = n - i;		  $ ng $
-   while ($ j  \leq 2i $)		$ (\alpha_i + 1)ss $
-   {
-      sum = sum + i*j;	  $ \alpha_i g $
-      j = j +2;           $ \alpha_i g $		
-   }
-   k = i;             	  $ ng $
-   while (k > 0)	$ (\beta_i + 1) ss $
-   {
-      sum = sum +1;	  $ \beta_i g $
-      k = k / 2;	  $ \beta_i g $
-   }
-   i = i + 1;		  $ n g $
-}
+            sum = 0;i = 1;              $ 2g $
+            while($ i \leq n $)                     $ (n+1)ss $ 
+            {    
+                j = n - i;		$ ng $
+                while ($ j  \leq 2i $)		$ (\alpha_i + 1)ss $
+                {
+                    sum = sum + i*j;    $ \alpha_i g $
+                    j = j +2;           $ \alpha_i g $		
+                }
+                k = i;             	$ ng $
+                while (k > 0)	        $ (\beta_i + 1) ss $
+                {
+                   sum = sum +1;	$ \beta_i g $
+                   k = k / 2;	        $ \beta_i g $
+                }
+                i = i + 1;		$ n g $
+            }
 	\end{lstlisting}
-	\textbf{Lời giải:} \\
-	$ \begin{aligned}
+\textbf{Lời giải:}
+\vspace{\baselineskip}
+
+$ \begin{aligned}
 		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong thứ nhất (Xét độc lập với vòng while bên ngoài)} \\
-					& \alpha_i = \text{ số con j chạy từ } n - i \rightarrow 2i \text{, bước tăng là 2} \\
+		             & \alpha_i = \text{ số con j chạy từ } n - i \rightarrow 2i \text{, bước tăng là 2}              \\
 	\end{aligned} $ \\
-	-Khi đó:\\ \\
-	$\alpha_i = \dfrac{2i - n + i}{2} + 1 = \dfrac{3i - n + 2}{2}$\\ \\
-	-Hàm While thực hiện khi j $\leq$ 2i $\Leftrightarrow$ n - i $\leq$ 2i $\Leftrightarrow$ $\frac{n}{3}$ $\leq$ i\\ \\
-	-Do đó: $\alpha_i =
+-Khi đó:\\ \\
+$\alpha_i = \dfrac{2i - n + i}{2} + 1 = \dfrac{3i - n + 2}{2}$\\ \\
+-Hàm While thực hiện khi j $\leq$ 2i $\Leftrightarrow$ n - i $\leq$ 2i $\Leftrightarrow$ $\frac{n}{3}$ $\leq$ i\\ \\
+-Do đó: $\alpha_i =
 	\begin{cases}
-	\dfrac{3i - n + 2}{2} &\text{khi } \quad (\frac{n}{3} \leq i)\\
-	0 &\text{khi } i < \frac{n}{3}
+		\dfrac{3i - n + 2}{2} & \text{khi } \quad (\frac{n}{3} \leq i) \\
+		0                     & \text{khi } i < \frac{n}{3}
 	\end{cases} \\ \\ $
-	$ \begin{aligned}
+$ \begin{aligned}
 		\text{-Gọi } & \beta_i \text{ là số lần lặp của while trong thứ hai (Xét độc lập với vòng while bên ngoài)} \\
-					& \beta_i = \text{ số con k chạy từ } i \rightarrow 1 \text{, bước giảm là } \frac{k}{2}
+		             & \beta_i = \text{ số con k chạy từ } i \rightarrow 1 \text{, bước giảm là } \frac{k}{2}
 	\end{aligned} $ \\
-	-Khi đó:\\
-	Các giá trị có thể có của k: \\ \\
-     k $\in$ \{ i, $\dfrac{i}{2}, \dfrac{i}{2^2}, \ldots, \dfrac{i}{2^k}, \ldots >0$ \} \\ \\
-	-Hàm While thực hiện khi $1 \leq \frac{1}{2^k}  \Leftrightarrow k \leq \log_2 i$\\  
-	$\Rightarrow \beta_i$ = số \space con k thõa mãn = $0 \leq k \leq \log_2 i = \log_2 i+1$\\
-	-Vậy: \\
-	$ \begin{aligned}
-		\text{Gán}(n) & = 2 + 3n + \sum^{n}_{i = 1} 2 \alpha_i  + \sum^{n}_{i = 1} 2 \beta_i\\
-			& = 2 + 3n + \sum^{n}_{i = \frac{n}{3}} (3i -n + 2) + 2 \sum^{n}_{i = 1}(\log_2 i+1)\\
-			& = 2 + 3n + \sum^{n}_{i = \frac{n}{3}} 3i - \sum^{n}_{i = \frac{n}{3}} n + \sum^{n}_{i = \frac{n}{3}} 2 + 2 \sum^{n}_{i = 1}\log_2 i + 2 \sum^{n}_{i = 1}1\\
-			& \approx 2 + 3n + (\sum^{n}_{i = 1} 3i - \sum^{\frac{n}{3}}_{i = 1} 3i) - (\sum^{n}_{i = 1} n - \sum^{\frac{n}{3}}_{i = 1} n) + (\sum^{n}_{i = 1} 2 - \sum^{\frac{n}{3}}_{i = 1} 2) + 2n \log_2n + 2n \\
-			& \approx 2 + 3n + [\frac{3}{2}n(n + 1) - \frac{1}{6}n(n + 3)] - (n^2 - \frac{n^2}{3}) + (2n - \frac{2n}{3}) + 2n \log_2n + 2n \\
-			\\SS(n) & = 1 + n + \sum^{n}_{i = 1} (\alpha_i  + 1) + \sum^{n}_{i = 1} ( \beta_i + 1)\\
-			& = 1 + n + \sum^{n}_{i = \frac{n}{3}} \frac{3i - n + 4}{2} + \sum^{n}_{i = 1} (\log_2 i + 2)\\
-			& = 1 + n + \frac{1}{2}\sum^{n}_{i = \frac{n}{3}} 3i - \frac{1}{2}\sum^{n}_{i = \frac{n}{3}} n + \sum^{n}_{i = \frac{n}{3}} 2 + \sum^{n}_{i = 1} \log_2 i + \sum^{n}_{i = 1} 2\\
-			& \approx 1 + n + \frac{1}{2}(\sum^{n}_{i = 1} 3i - \sum^{\frac{n}{3}}_{i = 1} 3i) - \frac{1}{2}(\sum^{n}_{i = 1} n - \sum^{\frac{n}{3}}_{i = 1} n) + (\sum^{n}_{i = 1} 2 - \sum^{\frac{n}{3}}_{i = 1} 2) + n \log_2n + 2n \\
-			& \approx 1 + n + \frac{1}{2}[\frac{3}{2}n(n + 1) - \frac{1}{6}n(n + 3)] - \frac{1}{2}(n^2 - \frac{n^2}{3}) + (2n - \frac{2n}{3}) + n \log_2n + 2n \\
+-Khi đó:\\
+Các giá trị có thể có của k: \\ \\
+k $\in$ \{ i, $\dfrac{i}{2}, \dfrac{i}{2^2}, \ldots, \dfrac{i}{2^k}, \ldots >0$ \} \\ \\
+-Hàm While thực hiện khi $1 \leq \frac{1}{2^k}  \Leftrightarrow k \leq \log_2 i$\\
+$\Rightarrow \beta_i$ = số \space con k thõa mãn = $0 \leq k \leq \log_2 i = \log_2 i+1$\\
+-Vậy: \\
+$ \begin{aligned}
+		\text{Gán}(n) & = 2 + 3n + \sum^{n}_{i = 1} 2 \alpha_i  + \sum^{n}_{i = 1} 2 \beta_i                                                                                                                                                     \\
+		              & = 2 + 3n + \sum^{n}_{i = \frac{n}{3}} (3i -n + 2) + 2 \sum^{n}_{i = 1}(\log_2 i+1)                                                                                                                                       \\
+		              & = 2 + 3n + \sum^{n}_{i = \frac{n}{3}} 3i - \sum^{n}_{i = \frac{n}{3}} n + \sum^{n}_{i = \frac{n}{3}} 2 + 2 \sum^{n}_{i = 1}\log_2 i + 2 \sum^{n}_{i = 1}1                                                                \\
+		              & \approx 2 + 3n + (\sum^{n}_{i = 1} 3i - \sum^{\frac{n}{3}}_{i = 1} 3i) - (\sum^{n}_{i = 1} n - \sum^{\frac{n}{3}}_{i = 1} n) + (\sum^{n}_{i = 1} 2 - \sum^{\frac{n}{3}}_{i = 1} 2) + 2n \log_2n + 2n                     \\
+		              & \approx 2 + 3n + [\frac{3}{2}n(n + 1) - \frac{1}{6}n(n + 3)] - (n^2 - \frac{n^2}{3}) + (2n - \frac{2n}{3}) + 2n \log_2n + 2n                                                                                             \\
+		\\SS(n) & = 1 + n + \sum^{n}_{i = 1} (\alpha_i  + 1) + \sum^{n}_{i = 1} ( \beta_i + 1)\\
+		              & = 1 + n + \sum^{n}_{i = \frac{n}{3}} \frac{3i - n + 4}{2} + \sum^{n}_{i = 1} (\log_2 i + 2)                                                                                                                              \\
+		              & = 1 + n + \frac{1}{2}\sum^{n}_{i = \frac{n}{3}} 3i - \frac{1}{2}\sum^{n}_{i = \frac{n}{3}} n + \sum^{n}_{i = \frac{n}{3}} 2 + \sum^{n}_{i = 1} \log_2 i + \sum^{n}_{i = 1} 2                                             \\
+		              & \approx 1 + n + \frac{1}{2}(\sum^{n}_{i = 1} 3i - \sum^{\frac{n}{3}}_{i = 1} 3i) - \frac{1}{2}(\sum^{n}_{i = 1} n - \sum^{\frac{n}{3}}_{i = 1} n) + (\sum^{n}_{i = 1} 2 - \sum^{\frac{n}{3}}_{i = 1} 2) + n \log_2n + 2n \\
+		              & \approx 1 + n + \frac{1}{2}[\frac{3}{2}n(n + 1) - \frac{1}{6}n(n + 3)] - \frac{1}{2}(n^2 - \frac{n^2}{3}) + (2n - \frac{2n}{3}) + n \log_2n + 2n                                                                         \\
 	\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh:}
@@ -326,29 +336,29 @@ while($i  \leq n$) do	      $ (n+1)ss $
    i = i + 1;		$ ng $
 endw
 	\end{lstlisting}
-	\textbf{Lời giải:} \\
-	$ \begin{aligned}
-		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong(Xét độc lập với vòng while bên ngoài)} \\
-					& \alpha_i = \text{ số con j chay j chạy từ 1} \rightarrow i \text{, bước tăng là (k + 2)} \\
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong(Xét độc lập với vòng while bên ngoài)}     \\
+		             & \alpha_i = \text{ số con j chay j chạy từ 1} \rightarrow i \text{, bước tăng là (k + 2)} \\
 	\end{aligned} $ \\
-	-Khi đó:\\
-	Các giá trị có thể có của j: \\
-    j $\in \{ 1, 2^2, 3^2, \ldots, k^2, \ldots, \leq i$ \}\\
-	= Số con k thõa $ j \leq i$ (Khi đó hàm While trong được thực hiện)\\ 
-	$\Rightarrow k^2 \leq i$\\
-	$\Rightarrow 1 \leq k \leq \sqrt{i}$
-	$\Rightarrow \alpha_i = \sqrt{i}$\\
-	-Vậy: \\
-	$ \begin{aligned}
-		\text{Gán}(n) & = 2 + 3n + 3\sum^{n}_{i = 1}\alpha_i\\
-			& = 2 + 3n + 3\sum^{n}_{i = 1}\sqrt i\\
-			& \approx 2 + 3n + 3 \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1} \\
-			& = 2 + 3n + 2n^\frac{3}{2}\\
-			\\SS(n) & = 1 + n + \sum^{n}_{i = 1}(\alpha_i + 1)\\
-			& = 1 + n + \sum^{n}_{i = 1}(\sqrt i + 1)\\
-			& = 1 + n + \sum^{n}_{i = 1}\sqrt i + \sum^{n}_{i = 1} 1 \\
-			& \approx 1 + n + \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1} + n \\
-			& = 1 + 2n + \dfrac{2}{3}n^\frac{3}{2}\\
+-Khi đó:\\
+Các giá trị có thể có của j: \\
+j $\in \{ 1, 2^2, 3^2, \ldots, k^2, \ldots, \leq i$ \}\\
+= Số con k thõa $ j \leq i$ (Khi đó hàm While trong được thực hiện)\\
+$\Rightarrow k^2 \leq i$\\
+$\Rightarrow 1 \leq k \leq \sqrt{i}$
+$\Rightarrow \alpha_i = \sqrt{i}$\\
+-Vậy: \\
+$ \begin{aligned}
+		\text{Gán}(n) & = 2 + 3n + 3\sum^{n}_{i = 1}\alpha_i                               \\
+		              & = 2 + 3n + 3\sum^{n}_{i = 1}\sqrt i                                \\
+		              & \approx 2 + 3n + 3 \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1}  \\
+		              & = 2 + 3n + 2n^\frac{3}{2}                                          \\
+		\\SS(n) & = 1 + n + \sum^{n}_{i = 1}(\alpha_i + 1)\\
+		              & = 1 + n + \sum^{n}_{i = 1}(\sqrt i + 1)                            \\
+		              & = 1 + n + \sum^{n}_{i = 1}\sqrt i + \sum^{n}_{i = 1} 1             \\
+		              & \approx 1 + n + \dfrac{1}{\frac{1}{2} + 1} n^{\frac{1}{2} + 1} + n \\
+		              & = 1 + 2n + \dfrac{2}{3}n^\frac{3}{2}                               \\
 	\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh:}
@@ -369,39 +379,39 @@ while ($ i \leq 4n $)		    $ (4n + 1)ss $
    i = i + 1;        	      $ 4ng $
 }
 	\end{lstlisting}
-	\textbf{Lời giải:} \\
-	$ \begin{aligned}
-		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-					& \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
-					& \alpha_i = x = (n-i)(i-3n) \\
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                                  \\
+		             & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
+		             & \alpha_i = x = (n-i)(i-3n)                                                       \\
 	\end{aligned} $ \\
-	\text{-Bảng xét dấu:} \\
-	\begin{table}[htb]
-		\begin{tabular}{c|c c c c c c c c c}
-			$i$ & $1$ &  & $n$ &  & $2n$ &  & $3n$  & & $4n$\\
-			\hline
-			$x = (n-i)(i-3n)$ &  & $-$ & $0$ & $+$ & $\vert$ & $+$ & $0$ & $-$\\
-			\hline
-			$y = i - 2n$ &  & $-$ & $\vert$ & $-$ & $0$ & $+$ & $\vert$ & $+$\\
-		\end{tabular}
-	\end{table} \\
-	\text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
-	$\alpha_i =
-	\begin{cases}
-	x &\text{khi } x>0 \quad (n + 1 \leq i \leq 3n - 1)\\
-	0 &\text{khi } x\leq 0
-	\end{cases} \\$
-	\text{-Câu lệnh count = count - 2 chỉ thực hiện khi i $\geq$ 2y} \\
-	$\Rightarrow i \leq 4n \text{ (Luôn đúng)}$\\
-	$\Rightarrow \text{Có } \alpha_i g \text{ được thực hiện }$  \\
-	\text{-Vậy:} \\
-	$ \begin{aligned}
-		\text{Gán}(n) & = 2 + 4.4n + \sum^{4n}_{i = 1} 2 \alpha_i \\
-			& = 16n + 2 + 2 \sum^{3n-1}_{i = n + 1} x\\
-		SS(n) & = 4n + 1 + \sum^{4n}_{i = 1} (2 \alpha_i + 1) \\
-			& = 4n + 1 + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1 \\
-			& = 4n + 1 + 2\sum^{3n-1}_{i = n + 1} x + 4n \\
-			& = 8n + 1 + 2\sum^{3n-1}_{i = n + 1} x \\
+\text{-Bảng xét dấu:} \\
+\begin{table}[htb]
+	\begin{tabular}{c|c c c c c c c c c}
+		$i$               & $1$ &     & $n$     &     & $2n$    &     & $3n$    &     & $4n$ \\
+		\hline
+		$x = (n-i)(i-3n)$ &     & $-$ & $0$     & $+$ & $\vert$ & $+$ & $0$     & $-$        \\
+		\hline
+		$y = i - 2n$      &     & $-$ & $\vert$ & $-$ & $0$     & $+$ & $\vert$ & $+$        \\
+	\end{tabular}
+\end{table} \\
+\text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
+$\alpha_i =
+\begin{cases}
+	x & \text{khi } x>0 \quad (n + 1 \leq i \leq 3n - 1) \\
+	0 & \text{khi } x\leq 0
+\end{cases} \\$
+\text{-Câu lệnh count = count - 2 chỉ thực hiện khi i $\geq$ 2y} \\
+$\Rightarrow i \leq 4n \text{ (Luôn đúng)}$\\
+$\Rightarrow \text{Có } \alpha_i g \text{ được thực hiện }$  \\
+\text{-Vậy:} \\
+$ \begin{aligned}
+		\text{Gán}(n) & = 2 + 4.4n + \sum^{4n}_{i = 1} 2 \alpha_i                   \\
+		              & = 16n + 2 + 2 \sum^{3n-1}_{i = n + 1} x                     \\
+		SS(n)         & = 4n + 1 + \sum^{4n}_{i = 1} (2 \alpha_i + 1)               \\
+		              & = 4n + 1 + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1 \\
+		              & = 4n + 1 + 2\sum^{3n-1}_{i = n + 1} x + 4n                  \\
+		              & = 8n + 1 + 2\sum^{3n-1}_{i = n + 1} x                       \\
 	\end{aligned} $ \\
 \section{Đếm số phép gán và so sánh:}
 
@@ -426,25 +436,25 @@ while ($ i \leq 4n $)           		$ 4n + 1ss $
 \end{lstlisting}
 \textbf{Lời giải:} \\
 $ \begin{aligned}
-    \text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-                & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
-                & \alpha_i = x = (n-i)(i-3n) \\
-\end{aligned} $ \\
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                                  \\
+		             & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
+		             & \alpha_i = x = (n-i)(i-3n)                                                       \\
+	\end{aligned} $ \\
 \text{-Bảng xét dấu:} \\
 \begin{table}[htb]
-    \begin{tabular}{c|c c c c c c c c c}
-        $i$ & $1$ &  & $n$ &  & $2n$ &  & $3n$  & & $4n$\\
-        \hline
-        $x = (n-i)(i-3n)$ &  & $-$ & $0$ & $+$ & $\vert$ & $+$ & $0$ & $-$\\
-        \hline
-        $y = i - 2n$ &  & $-$ & $\vert$ & $-$ & $0$ & $+$ & $\vert$ & $+$\\
-    \end{tabular}
+	\begin{tabular}{c|c c c c c c c c c}
+		$i$               & $1$ &     & $n$     &     & $2n$    &     & $3n$    &     & $4n$ \\
+		\hline
+		$x = (n-i)(i-3n)$ &     & $-$ & $0$     & $+$ & $\vert$ & $+$ & $0$     & $-$        \\
+		\hline
+		$y = i - 2n$      &     & $-$ & $\vert$ & $-$ & $0$     & $+$ & $\vert$ & $+$        \\
+	\end{tabular}
 \end{table} \\
 \text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
 $\alpha_i =
 \begin{cases}
-x &\text{khi } x>0 \quad (n + 1 \leq i \leq 3n - 1)\\
-0 &\text{khi } x\leq 0
+	x & \text{khi } x>0 \quad (n + 1 \leq i \leq 3n - 1) \\
+	0 & \text{khi } x\leq 0
 \end{cases} \\$
 \text{-Câu lệnh if(y > 0) chỉ thực hiện khi x > 0} \\
 $\Rightarrow \text{Có } (3n - 1) - (n + 1) + 1 = (2n - 1)ss$ \\
@@ -455,13 +465,13 @@ $\Rightarrow 2n \leq i \leq 3n - 1$ \\
 $\Rightarrow \text{Có } \alpha_ig \text{ khi }  2n \leq i \leq 3n - 1$\\
 \text{-Vậy:} \\
 $ \begin{aligned}
-    \text{Gán}(n) & = 2 + 4n + 4n + 4n + (n - 1) + 4n + \sum^{4n}_{i = 1} 2 \alpha_i \\
-        & = 17n + 1 + \sum^{3n-1}_{i = n + 1} x + \sum^{3n-1}_{i = 2n} x\\
-    SS(n) & = 4n + 1 + 4n + (2n - 1) + \sum^{4n}_{i = 1} (2 \alpha_i + 1) \\
-        & = 10n + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1 \\
-        & = 10n + 2 \sum^{3n-1}_{i = n + 1} x + 4n \\
-        & = 14n + 2 \sum^{3n-1}_{i = n + 1} x \\
-\end{aligned} $ \\
+		\text{Gán}(n) & = 2 + 4n + 4n + 4n + (n - 1) + 4n + \sum^{4n}_{i = 1} 2 \alpha_i \\
+		              & = 17n + 1 + \sum^{3n-1}_{i = n + 1} x + \sum^{3n-1}_{i = 2n} x   \\
+		SS(n)         & = 4n + 1 + 4n + (2n - 1) + \sum^{4n}_{i = 1} (2 \alpha_i + 1)    \\
+		              & = 10n + \sum^{3n-1}_{i = n + 1} 2x + \sum^{4n}_{i = 1} 1         \\
+		              & = 10n + 2 \sum^{3n-1}_{i = n + 1} x + 4n                         \\
+		              & = 14n + 2 \sum^{3n-1}_{i = n + 1} x                              \\
+	\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh:}
 
@@ -486,24 +496,24 @@ while ($i \leq 3n$)         $ 3n + 1ss $
 \end{lstlisting}
 \textbf{Lời giải:} \\
 $ \begin{aligned}
-	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-				& \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
-				& \alpha_i = x = 2n - i \\
-\end{aligned} $ \\
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                                  \\
+		             & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow x \text{, bước tăng là 1} \\
+		             & \alpha_i = x = 2n - i                                                            \\
+	\end{aligned} $ \\
 \text{-Bảng xét dấu:} \\
 \begin{table}[htb]
-    \begin{tabular}{c|c c c c c c c}
-        $i$ & $1$ &  & $n$ &  & $2n$ &  & $3n$ \\
-        \hline
-        $x = 2n - i$ &  & $+$ & $\vert$ & $+$ & $0$ & $-$ & \\
-        $y = i - n$ &  & $-$ & $0$ & $+$ & $\vert$ & $+$ &  \\
-    \end{tabular}
+	\begin{tabular}{c|c c c c c c c}
+		$i$          & $1$ &     & $n$     &     & $2n$    &     & $3n$ \\
+		\hline
+		$x = 2n - i$ &     & $+$ & $\vert$ & $+$ & $0$     & $-$ &      \\
+		$y = i - n$  &     & $-$ & $0$     & $+$ & $\vert$ & $+$ &      \\
+	\end{tabular}
 \end{table} \\
 \text{-while trong chỉ thực hiện khi} $x \geq 1 \Leftrightarrow x > 0$ \\ \\
 $\alpha_i =
 \begin{cases}
-x &\text{khi } x>0 \quad (1 \leq i \leq 2n - 1)\\
-0 &\text{khi } x\leq 0
+	x & \text{khi } x>0 \quad (1 \leq i \leq 2n - 1) \\
+	0 & \text{khi } x\leq 0
 \end{cases} \\$
 \text{-Câu lệnh if(x > 0) chỉ thực hiện khi y > 0} \\
 $\Rightarrow \text{Có } 3n - (n + 1) + 1 = 2nss$ \\
@@ -515,16 +525,16 @@ $\Rightarrow n \leq 2n - i \Leftrightarrow i \leq n$ \\
 $\Rightarrow \text{Có } (2n - i) - n + 1 = (n - i + 1)g \text{ khi } i \leq n$\\
 \text{-Vậy:} \\
 $ \begin{aligned}
-	\text{Gán}(n) & = 2 + 3n + 3n + 3n + 3n + (n - 1) + \sum^{3n}_{i = 1} (\alpha_i + n - i + 1)\\
-		& = 13n + 1 + \sum^{2n-1}_{i = 1} x + \sum^{n}_{i = 1} (n - i + 1) \\
-		& = 13n + 1 + \sum^{2n-1}_{i = 1} (2n - i) + \sum^{n}_{i = 1} (n - i + 1) \\
-\end{aligned} $ \\
+		\text{Gán}(n) & = 2 + 3n + 3n + 3n + 3n + (n - 1) + \sum^{3n}_{i = 1} (\alpha_i + n - i + 1) \\
+		              & = 13n + 1 + \sum^{2n-1}_{i = 1} x + \sum^{n}_{i = 1} (n - i + 1)             \\
+		              & = 13n + 1 + \sum^{2n-1}_{i = 1} (2n - i) + \sum^{n}_{i = 1} (n - i + 1)      \\
+	\end{aligned} $ \\
 $ \begin{aligned}
-	SS(n) & = 3n + 1 + 3n + 2n + \sum^{3n}_{i = 1} (2 \alpha_i + 1) \\
-		& = 8n + 1 +\sum^{2n-1}_{i = 1} 2x + \sum^{3n}_{i = 1} 1 \\
-		& = 8n + 1 +\sum^{2n-1}_{i = 1} 2(2n - i) + 3n \\
-		& = 11n + 1 +\sum^{2n-1}_{i = 1} (4n - 2i) \\
-\end{aligned} $ \\
+		SS(n) & = 3n + 1 + 3n + 2n + \sum^{3n}_{i = 1} (2 \alpha_i + 1) \\
+		      & = 8n + 1 +\sum^{2n-1}_{i = 1} 2x + \sum^{3n}_{i = 1} 1  \\
+		      & = 8n + 1 +\sum^{2n-1}_{i = 1} 2(2n - i) + 3n            \\
+		      & = 11n + 1 +\sum^{2n-1}_{i = 1} (4n - 2i)                \\
+	\end{aligned} $ \\
 
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
@@ -546,10 +556,10 @@ if(idx != -1)                          $ 1ss $
 \end{lstlisting}
 \textbf{Lời giải:} \\
 $ \begin{aligned}
-	\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                              \\
-				& \alpha_i = \text{số con j với j chạy từ 1} \rightarrow n \text{, bước tăng là 1} \\
-				& \alpha_i = n \\
-\end{aligned} $ \\
+		\text{-Gọi } & \alpha_i \text{ là số lần lặp của while trong:}                                  \\
+		             & \alpha_i = \text{số con j với j chạy từ 1} \rightarrow n \text{, bước tăng là 1} \\
+		             & \alpha_i = n                                                                     \\
+	\end{aligned} $ \\
 \text{-Câu lệnh if(i == j) sẽ luôn được thực hiện khi bắt đầu vòng lặp while trong} \\
 $\Rightarrow \text{Có } \alpha_iss$ \\
 \text{-Câu lệnh if(i + j == n + 1) chỉ thực hiện khi i = j} \\
@@ -558,8 +568,8 @@ $\text{Có 1 trường hợp duy nhất} \Rightarrow \text{Có } 1ss$ \\
 \text{-Gọi x là số phép gán của câu lệnh idx = i} \\
 $x =
 \begin{cases}
-1 &\text{khi n lẻ} \\
-0 &\text{khi n chẵn}
+	1 & \text{khi n lẻ}   \\
+	0 & \text{khi n chẵn}
 \end{cases} \\$
 \text{-Câu lệnh sum = sum - a[idx][idx] chỉ thực hiện khi idx != -1, tức là câu lệnh idx = i} \\
 \text{phải được thực hiện} \\
@@ -567,28 +577,28 @@ $\Rightarrow \text{Thỏa điều kiện i = j, i + j = n + 1 } \Leftrightarrow 
 \text{-Gọi y là số phép gán của câu lệnh sum = sum - a[idx][idx]} \\
 $y =
 \begin{cases}
-1 &\text{khi n lẻ} \\
-0 &\text{khi n chẵn}
+	1 & \text{khi n lẻ}   \\
+	0 & \text{khi n chẵn}
 \end{cases} \\$
 \text{Vậy:} \\
 $ \begin{aligned}
-	\text{Gán}(n) & = 3 + 2n + y + \sum^{n}_{i = 1} (2 \alpha_i + x) \\
-		& = 
+		\text{Gán}(n) & = 3 + 2n + y + \sum^{n}_{i = 1} (2 \alpha_i + x)             \\
+		              & =
 		\begin{cases}
-		3 + 2n + 1 + \sum^{n}_{i = 1} (2n + 1) &\text{khi n lẻ} \\
-		3 + 2n + \sum^{n}_{i = 1} 2n &\text{khi n chẵn}
-		\end{cases} \\
-		& =
+			3 + 2n + 1 + \sum^{n}_{i = 1} (2n + 1) & \text{khi n lẻ}   \\
+			3 + 2n + \sum^{n}_{i = 1} 2n           & \text{khi n chẵn}
+		\end{cases}                   \\
+		              & =
 		\begin{cases}
-		4 + 2n + 2n^2 + n = 4 + 3n + 2n^2 &\text{khi n lẻ} \\
-		3 + 2n + 2n^2 &\text{khi n chẵn}
-		\end{cases} \\
-	SS(n) & = n + 1 + 1 + \sum^{n}_{i = 1} (\alpha_i + 1 + \alpha_i + 1) \\
-		& = n + 2 + \sum^{n}_{i = 1} (2n + 2) \\
-		& = n + 2 + 2n^2 + 2n \\
-		& = 2 + 3n + 2n^2 \\
-\end{aligned} $ \\
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			4 + 2n + 2n^2 + n = 4 + 3n + 2n^2 & \text{khi n lẻ}   \\
+			3 + 2n + 2n^2                     & \text{khi n chẵn}
+		\end{cases}                        \\
+		SS(n)         & = n + 1 + 1 + \sum^{n}_{i = 1} (\alpha_i + 1 + \alpha_i + 1) \\
+		              & = n + 2 + \sum^{n}_{i = 1} (2n + 2)                          \\
+		              & = n + 2 + 2n^2 + 2n                                          \\
+		              & = 2 + 3n + 2n^2                                              \\
+	\end{aligned} $ \\
+
 \section{Đếm số phép gán và so sánh:}
 \begin{lstlisting}
 i = 1; ret = 0; s = 0;     $ 3g $
@@ -606,140 +616,146 @@ while($ i \leq n $)        		 $ (n + 1)ss $
 \end{lstlisting}
 \textbf{Lời giải:} \\
 $ \begin{aligned}
-	\text{-Gọi } \alpha_i & \text{ là số vòng lặp của while trong}                        &  & \\
-	              \alpha_i & = \text{số con j chạy từ 1 } \rightarrow s = s + \dfrac{1}{i}
-\end{aligned} $ \\
+		\text{-Gọi } \alpha_i & \text{ là số vòng lặp của while trong}                        &  & \\
+		\alpha_i              & = \text{số con j chạy từ 1 } \rightarrow s = s + \dfrac{1}{i}
+	\end{aligned} $ \\
 Suy ra: $\alpha_i$ = s + $\dfrac{1}{i}$ - 1 + 1 = s + $\dfrac{1}{i}$ \\
 Ta có: s $\in$ \{1 ; 1 + $\dfrac{1}{2}$ ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ ; … ; 1 + $\dfrac{1}{2}$ + $\dfrac{1}{3}$ + … + $\dfrac{1}{n}$ \} \\
 Suy ra: $\alpha_i$ = $\sum_{k=1}^i \dfrac{1}{k}$ = $\ln i + \gamma$ ($\gamma \approx 0.5772$), với i lần lượt là 1, 2, 3,..., n \\
 \text{-Vậy: } \\
 $ \begin{aligned}
-	\text{Gán}(n) & = 3 + 3n + \sum_{i=1}^n 2\alpha_i  \\
-	              & = 3 + 3n + 2\sum_{i=1}^n (\ln i + \gamma) \\
-				  & = 3 + 3n + 2\sum_{i=1}^n \ln i + 2\sum_{i=1}^n \gamma \\
-				  & = 3 + 3n + 2\ln n! + 2n \gamma \text{ }(\gamma \approx 0.5772) \\
-	\text{SS(n) } & = n + 1 + \sum_{i=1}^n (\alpha_i + 1) \\
-	              & = n + 1 + \sum_{i=1}^n (\ln i + \gamma + 1) \\
-				  & = n + 1 + \sum_{i=1}^n \ln i + \sum_{i=1}^n \gamma + \sum_{i=1}^n 1 \\
-				  & = n + 1 + \ln n! + n \gamma + n \\
-				  & = 2n + 1 + \ln n! + n \gamma \text{ }(\gamma \approx 0.5772) \\
-\end{aligned} $ \\
+		\text{Gán}(n) & = 3 + 3n + \sum_{i=1}^n 2\alpha_i                                   \\
+		              & = 3 + 3n + 2\sum_{i=1}^n (\ln i + \gamma)                           \\
+		              & = 3 + 3n + 2\sum_{i=1}^n \ln i + 2\sum_{i=1}^n \gamma               \\
+		              & = 3 + 3n + 2\ln n! + 2n \gamma \text{ }(\gamma \approx 0.5772)      \\
+        \text{SS}(n) & = n + 1 + \sum_{i=1}^n (\alpha_i + 1)                               \\
+		             & = n + 1 + \sum_{i=1}^n (\ln i + \gamma + 1)                         \\
+		             & = n + 1 + \sum_{i=1}^n \ln i + \sum_{i=1}^n \gamma + \sum_{i=1}^n 1 \\
+		             & = n + 1 + \ln n! + n \gamma + n                                     \\
+		             & = 2n + 1 + \ln n! + n \gamma \text{ }(\gamma \approx 0.5772)        \\
+	\end{aligned} $ \\
 
 \section{Cho n,m là các số nguyên dương. Xem xét thuật toán sau đây, giả sử phép gán và phép so sánh đóng vai trò chủ yếu trong thời gian chạy của thuật toán:}
 
 \begin{lstlisting}
-sum = 0;		$ 1g $
-i = 1;			$ 1g $
-while($ i \leq m $)		      $ (m+1)ss $
-{
-   j = 1;		$ mg $
-   while($ j \leq n $)	      $ (\alpha_i + 1)ss $
-   {
-      if(i != j)	$ \alpha_i ss $
-         sum = sum + 1;
-      j++;		$ \alpha_ig $
-   }
-   i++;			$ mg $
-}
+            sum = 0;		        $ 1g $
+            i = 1;		        $ 1g $
+            while($ i \leq m $)		        $ (m+1)ss $
+            {
+               j = 1;		        $ mg $
+               while($ j \leq n $)	                $ (\alpha_i + 1)ss $
+               {
+                  if(i != j)	        $ \alpha_i ss $
+                     sum = sum + 1;
+                  j++;		        $ \alpha_ig $
+               }
+               i++;		        $ mg $
+            }
 \end{lstlisting}
-\textbf{Lời giải:} \\
-$\textbf{a)}$ \\
-$ \begin{aligned}
-	\text{-Gọi } \alpha_i & \text{ là số lần lặp của while trong}            \\
-	                     & \text{= số con j chạy từ 1 $\rightarrow$ n}      \\
-	                     & \text{= n}                                  &  & \\
-\end{aligned} $ \\
--Câu lệnh if(i!=j) được thực hiện mn lần, điều kiện của if chỉ sai khi i = j.
-\begin{itemize}
-	\item Trường hợp 1: $n \leq m$ \\
-	      Trong mỗi vòng lặp của i trong khoảng [1, n], j cũng chạy trong khoảng [1, n], mỗi lần như vậy i = j một lần, tổng là n lần.
-	      Suy ra: lệnh sum = sum + 1 được thực hiện (mn – n) lần
-	\item Trường hợp 2: $n > m$ \\
-	      Trong mỗi vòng lặp của i trong khoảng [1, m], j cũng chạy trong khoảng [1, m], mỗi lần như vậy i = j một lần, tổng là m lần.
-	      Suy ra: lệnh sum = sum + 1 được thực hiện (mn – m) lần
-\end{itemize}
--Vậy: lệnh sum = sum + 1 được thực hiện (mn – min(m,n)) lần \\
-\setlength{\baselineskip}{1.2\baselineskip}
-Gán(n) = 2 + 2m + mn + (mn – min(m,n)) \\
-SS(n) = m + 1 + m(n+1) + mn \\
+\textbf{Lời giải:}
+\begin{enumerate}
+	\item $ \begin{aligned}[t]
+			      \text{Gọi } \alpha_i & \text{ là số lần lặp của while trong}            \\
+			                  \alpha_i & \text{ = số con j chạy từ 1 $\rightarrow$ n}      \\
+			                  \alpha_i & \text{ = n} \\
+		      \end{aligned} $
 
-\pagebreak
-$\textbf{b)}$ \\
-Chương trình C++:
+	      Câu lệnh $ if(i != j) $ được thực hiện mn lần, điều kiện của if chỉ sai khi i = j.
+
+	      \begin{itemize}
+		      \item Trường hợp 1: $n \leq m$ \\
+		            Trong mỗi vòng lặp của $ i $ trong khoảng $ [1, n] $, $ j $ cũng chạy trong khoảng $ [1, n] $, mỗi lần như vậy $ i = j $ một lần, tổng là $ n $ lần.
+		            Suy ra: lệnh $ sum = sum + 1 $ được thực hiện $ (mn - n) $ lần
+
+		      \item Trường hợp 2: $n > m$ \\
+		            Trong mỗi vòng lặp của $ i $ trong khoảng $ [1, m] $, $ j $ cũng chạy trong khoảng $ [1, m] $, mỗi lần như vậy $ i = j $ một lần, tổng là $ m $ lần.
+		            Suy ra: lệnh $ sum = sum + 1 $ được thực hiện $ (mn - m) $ lần
+	      \end{itemize}
+
+          Vậy: lệnh $ sum = sum + 1 $ được thực hiện $ (mn - \min(m,n)) $ lần
+
+          $ \text{Gán}(n) = 2 + 2m + mn + (mn - \min(m,n)) $ \\
+	      $ SS(n) = m + 1 + m(n+1) + mn $
+    \item Chương trình C++:
 \begin{lstlisting}[language=C++]
-  	#include <iostream>
-  	
-  	int main() {
-  		int m, n;
-  		
-  		std::cout << "Enter m: ";
-  		std::cin >> m;
-  		std::cout << "Enter n: ";
-  		std::cin >> n;
-  		
-  		int s = 0;
-  		int i = 1;
-  		int demGan = 2;
-  		int demSS = 0;
-  		
-  		while (i <= m) {
-  			demSS += 1;
-  			int j = 1;
-  			while (j <= n) {
-  				demSS += 1;
-  				if (i != j) {
-  					s = s + 1;
-  					demGan += 1;
-  				}
-  				demSS += 1;
-  				j += 1;
-  				demGan += 1;
-  			}
-  			demSS += 1;
-  			i += 1;
-  			demGan += 2;
-  		}
-  		
-  		demSS += 1;
-  		
-  		std::cout << "Gan(n) = " << demGan << std::endl;
-  		std::cout << "SS(n) = " << demSS << std::endl;
-  		
-  		return 0;
-  	}
+#include <iostream>
+
+int main() {
+    int m, n;
+    
+    std::cout << "Enter m: ";
+    std::cin >> m;
+    std::cout << "Enter n: ";
+    std::cin >> n;
+    
+    int s = 0;
+    int i = 1;
+    int demGan = 2;
+    int demSS = 0;
+    
+    while (i <= m) {
+        demSS += 1;
+        int j = 1;
+        while (j <= n) {
+            demSS += 1;
+            if (i != j) {
+                s = s + 1;
+                demGan += 1;
+            }
+            demSS += 1;
+            j += 1;
+            demGan += 1;
+        }
+        demSS += 1;
+        i += 1;
+        demGan += 2;
+    }
+    
+    demSS += 1;
+    
+    std::cout << "Gan(n) = " << demGan << std::endl;
+    std::cout << "SS(n) = " << demSS << std::endl;
+    
+    return 0;
+}
   \end{lstlisting}
 
-\pagebreak
 \begin{figure}[!]
 	\centering \large Kết quả chạy chương trình
 	\caption{(10,20)}
 	\includegraphics{Bai11_1}
+\end{figure}
+\begin{figure}[!]
+	\centering
 	\caption{(35,24)}
 	\includegraphics{Bai11_2}
+\end{figure}
+\begin{figure}[!]
+	\centering
 	\caption{(50,50)}
 	\includegraphics{Bai11_3}
+\end{figure}
+\begin{figure}[!]
+	\centering
 	\caption{(200,100)}
 	\includegraphics{Bai11_4}
+\end{figure}
+\begin{figure}[!]
+	\centering
 	\caption{(100,200)}
 	\includegraphics{Bai11_5}
 \end{figure}
 
-\pagebreak
-\begin{center}
-	\begin{tabular}{| m{10em} | m{1.5cm}| m{1.5cm} | m{1.5cm} | m{2cm} | m{2cm} |}
-		\hline
-		Ví dụ 5 bộ dữ liệu thử nghiệm (n, m)                  & (10, 20) & (35, 24) & (50, 50) & (200, 100) & (100, 200) \\
-		\hline
-		Gán(n) = …(theo công thức đếm thủ công từ câu a)      & 432      & 1706     & 5052     & 40102      & 40302      \\
-		\hline
-		Gán(n) kết quả khi chạy chương trình ở Bước 2         & 432      & 1706     & 5052     & 40102      & 40302      \\
-		\hline
-		So sánh(n) = …(theo  công thức đếm thủ công từ câu a) & 441      & 1729     & 5101     & 40201      & 40401      \\
-		\hline
-		So sánh(n) kết quả khi chạy chương trình              & 441      & 1729     & 5101     & 40201      & 40401      \\
-		\hline
-	\end{tabular}
-\end{center}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{m{10em} r r r r r}
+    Ví dụ 5 bộ dữ liệu thử nghiệm (n, m)                           & (10, 20) & (35, 24) & (50, 50) & (200, 100) & (100, 200) \\
+    \midrule
+    Gán$ (n) = \ldots $ (theo công thức đếm thủ công từ câu a)     & 432      & 1706     & 5052     & 40102      & 40302      \\
+    Gán$ (n) $ kết quả khi chạy chương trình ở Bước 2              & 432      & 1706     & 5052     & 40102      & 40302      \\
+    So sánh$ (n) $ = \ldots (theo công thức đếm thủ công từ câu a) & 441      & 1729     & 5101     & 40201      & 40401      \\
+    So sánh$ (n) $ kết quả khi chạy chương trình                   & 441      & 1729     & 5101     & 40201      & 40401      \\
+\end{tabular}
 
-\noindent Nhận xét kết quả so sánh: Số phép gán và số phép so sánh  khi tính bằng công thức từ câu a và khi chạy chương trình là bằng nhau.
+\textbf{Nhận xét kết quả so sánh:} Số phép gán và số phép so sánh  khi tính bằng công thức từ câu a và khi chạy chương trình là bằng nhau.
+\end{enumerate}
 \end{document}
