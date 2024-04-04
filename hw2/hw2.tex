@@ -1,0 +1,307 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[top = 1cm, bottom = 0.75cm, left = 1in, right = 1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\geometry{margin=3cm}
+
+\titleformat{\section}
+{\Large\bfseries}
+{Bài tập \thesection: }
+{0em}
+{}
+
+\titleformat{\subsection}
+{\large\bfseries}
+{{\thesubsection} }
+{0em}
+{}
+
+\renewcommand{\theenumi}{\bfseries\large\alph{enumi}}
+
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\title{
+  \large\textbf{TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN} \\
+  \large\textbf{KHOA KHOA HỌC MÁY TÍNH} \\
+  \vfill
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{uit}
+  \end{figure}
+  \vfill
+  \textbf{BÀI TẬP MÔN PHÂN TÍCH VÀ THIẾT KẾ THUẬT TOÁN} \\
+  \vspace{1cm}
+  \Large \textbf{HOMEWORK \#02:} \\
+  \large \text{PHÂN TÍCH THUẬT TOÁN ĐỆ QUY}
+  \vfill
+}
+
+\author{
+  \begin{tabular}{rl}
+    \textbf{GV hướng dẫn:} &Huỳnh Thị Thanh Thương \\
+    \textbf{Nhóm thực hiện:}
+    &1. Nguyễn Gia Bảo 22520108 \\
+    &2. Võ Đình Khánh 22520659 \\
+    &3. Nguyễn Trần Phúc 22521135 \\
+    &4. Hồ Trọng Duy Quang 22521200 \\
+  \end{tabular}
+}
+
+\date{{\vfill}Thành phố Hồ Chí Minh, \MakeLowercase{\today}}
+
+\begin{document}
+\maketitle
+\pagebreak
+\newgeometry{margin=3cm}
+
+\section{Thành lập phương trình đệ quy, kèm giải thích cách thành lập. Không giải phương trình}
+\begin{enumerate}
+	\item \text{Gửi ngân hàng 1000 USD, lãi suất 12\%/năm. Số tiền có được sau 30 năm là bao nhiêu?}
+	
+    \textbf{Lời giải:}
+\begin{lstlisting}
+double interest_rate(int n) {
+    if (n == 0) return 1000;
+    return interest_rate(n - 1)*1.12;
+}
+\end{lstlisting}
+    $T(n) =
+    \begin{cases}
+    1000 &\text{khi n = 0} \\
+    T(n-1) &\text{khi n > 0}
+    \end{cases}$ \\
+
+    \textit{Giải thích:} \\
+    \text{-Khi n = 0, số năm gửi tiền là 0 nên sẽ trả về số tiền ban đầu là 1000 USD.} \\
+    $\Rightarrow T(0) = 1000$ \\
+    \text{-Khi n > 0, số tiền sau năm thứ n sẽ bằng số tiền sau năm trước đó nhân với lãi suất 1.12.} \\
+    $\Rightarrow T(n) = T(n-1)$ \\
+
+    \item \begin{lstlisting}
+long Fibo(int n) {
+    if(n == 0 || n == 1) return 1;
+    return Fibo(n - 1) + Fibo(n - 2);
+}
+    \end{lstlisting}
+    \textbf{Lời giải:} \\ \\
+    $T(n) =
+    \begin{cases}
+    1 &\text{khi n = 0 hoặc n = 1} \\
+    T(n-1) + T(n-2) &\text{khi n > 1}
+    \end{cases}$ \\ 
+
+    \textit{Giải thích:} \\
+    \text{-Khi n = 0 hoặc n = 1, số Fibonacci sẽ trả về 1.} \\
+    $\Rightarrow T(0) = T(1) = 1$ \\
+    \text{-Khi n > 1, số Fibonacci sẽ bằng tổng của 2 số Fibonacci trước đó.} \\
+    $\Rightarrow T(n) = T(n-1) + T(n-2)$ \\
+
+	\item \begin{lstlisting}
+public int g(int n) {
+    if (n == 1)
+        return 2;
+    else
+        return 3*g(n/2) + g(n/2) + 5;
+}
+    \end{lstlisting}
+    \textbf{Lời giải:} \\ \\
+    $T(n) =
+    \begin{cases}
+    2 &\text{khi n = 1} \\
+    2T(n/2) + 5 &\text{khi n > 1}
+    \end{cases}$ \\
+
+    \textit{Giải thích:} \\
+    \text{-Khi n = 1, hàm sẽ trả về 2.} \\
+    $\Rightarrow T(1) = 2$ \\
+    \text{-Khi n > 1, hàm sẽ trả về với 2 lần gọi hàm g(n/2) cộng với 5.} \\
+    $\Rightarrow T(n) = 2T(n/2) + 5$ \\
+
+	\item \begin{lstlisting}
+long xn(int n) {
+  if(n == 0) return 1;
+  long s = 0;
+  for(int i=1; i<=n; i++) {
+    s = s + i*i*xn(n-i);
+  }
+  return s;
+}
+	\end{lstlisting}
+  \textbf{Lời giải:} \\ \\
+  $T(n) =
+  \begin{cases}
+  1 &\text{khi n = 0} \\
+  \sum_{i=1}^{n} T(n-i) + n &\text{khi n > 0}
+  \end{cases}$ \\
+
+  \textit{Giải thích:} \\
+  \text{-Khi n = 0, hàm sẽ trả về 1.} \\
+  $\Rightarrow T(0) = 1$ \\
+  \text{-Khi n > 0, hàm xn(n-i) sẽ được gọi n lần trong vòng lặp và biến s được gán n lần} \\
+  $\Rightarrow T(n) = \sum_{i=1}^{n} T(n-i) + n$ \\
+
+
+	\item \begin{lstlisting}
+Draw(n) {
+  if($n < 1$) return 0;
+  for(i = 1; i <= n; i++) {
+    for(j = 1; j <= n; j++) {
+      print("*");
+    }
+  }
+  Draw(n-3);
+}
+	\end{lstlisting}
+  \textbf{Lời giải:} \\ \\
+  $T(n) =
+  \begin{cases}
+  0 &\text{khi n < 1} \\
+  T(n-3) + n^2 &\text{khi n $\geq$ 1}
+  \end{cases}$ \\
+
+  \textit{Giải thích:} \\
+  \text{-Khi n < 1, hàm sẽ trả về 0.} \\
+  $\Rightarrow T(n) = 0$ \\
+  \text{-Khi n $\geq$ 1, hàm sẽ in ra $n^2$ dấu * và gọi hàm Draw(n-3).} \\
+  $\Rightarrow T(n) = T(n-3) + n^2$ \\
+
+	\item \begin{lstlisting}
+hanoi(n, A, B, C) {
+  if(n == 1) transfer(A, C);
+  else {
+    hanoi(n-1, A, C, B);
+    transfer(A, C);
+    hanoi(n-1, B, A, C);
+  }
+}
+  \end{lstlisting}
+
+  \textbf{Lời giải:} \\ \\
+  $T(n) =
+  \begin{cases}
+  1 &\text{khi n = 1} \\
+  2T(n-1) + 1 &\text{khi n > 1}
+  \end{cases}$ \\
+
+  \textit{Giải thích:} \\
+  \text{-Khi n = 1, hàm sẽ thực hiện chuyển đĩa từ cột A sang cột C, coi chi phí của hàm Transfer(A, C) là 1} \\
+  $\Rightarrow T(1) = 1$ \\
+  \text{-Khi n > 1, hàm sẽ gọi đệ quy hanoi(n-1, A, C, B), hanoi(n-1, B, A, C) và chi phí của hàm Transfer(A, C) là 1} \\
+  $\Rightarrow T(n) = 2T(n-1) + 1$ \\
+
+\end{enumerate}
+\section{Giải các phương trình đệ quy sau dùng phương pháp truy hồi}
+\subsection{$T(n) = 2T(\dfrac{n}{2}) + n^2 \quad \quad T(1) = 1$}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+    T(n) &= 2T(\dfrac{n}{2}) + n^2 \\
+        &= 2[2T(\dfrac{n}{4}) + \dfrac{n^2}{4}] + n^2 \\
+        &= 4T(\dfrac{n}{4}) + \dfrac{n^2}{2} + n^2 \\
+        &= 4[2T(\dfrac{n}{8}) + \dfrac{n^2}{16}] + \dfrac{n^2}{2} + n^2 \\
+        &= 8T(\dfrac{n}{8}) + \dfrac{n^2}{4} + \dfrac{n^2}{2} + n^2 \\
+        &\cdots \cdots \\
+        &= 2^iT(\dfrac{n}{2^i}) + \dfrac{n^2}{2^{i-1}} + \dfrac{n^2}{2^{i-2}} + \cdots + n^2 \\
+        &= 2^iT(\dfrac{n}{2^i}) + n^2(1 + \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^{i-1}}) \\
+        &= 2^iT(\dfrac{n}{2^i}) + n^2 \sum_{j=0}^{i-1} (\dfrac{1}{2})^j \\
+        &= 2^iT(\dfrac{n}{2^i}) + n^2 . \dfrac{(\dfrac{1}{2})^i - 1}{\dfrac{1}{2} - 1} \\
+        &= 2^iT(\dfrac{n}{2^i}) + 2n^2 [1 - (\dfrac{1}{2})^i] \\
+\end{aligned} $ \\ \\ \\
+\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+$\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
+$\Leftrightarrow i = \log_2{n}$ \\ \\
+\text{-Vậy:} \\
+$ \begin{aligned}
+    T(n) &= 2^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + 2n^2[1 - (\dfrac{1}{2})^{\log_2{n}}] \\
+        &= nT(1) + 2n^2(1 - \dfrac{1}{n}) \\
+        &= n + 2n^2 - 2n \\
+        &= 2n^2 - n
+\end{aligned} $\\ 
+
+\subsection{$T(n) = 2T(\dfrac{n}{2}) + \log n \quad \quad T(1) = 1$}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+    T(n) &= 2T(\dfrac{n}{2}) + \log n \\
+        &= 2[2T(\dfrac{n}{4}) + \log \dfrac{n}{2}] + \log n \\
+        &= 4T(\dfrac{n}{4}) + 2\log \dfrac{n}{2} + \log n \\
+        &= 4[2T(\dfrac{n}{8}) + \log \dfrac{n}{4}] + 2\log \dfrac{n}{2} + \log n \\
+        &= 8T(\dfrac{n}{8}) + 4\log \dfrac{n}{4} + 2\log \dfrac{n}{2} + \log n \\
+        &\cdots \cdots \\
+        &= 2^iT(\dfrac{n}{2^i}) + 2^{i-1}\log \dfrac{n}{2^{i-1}} + 2^{i-2}\log \dfrac{n}{2^{i-2}} + \cdots + 2\log \dfrac{n}{2} + \log n \\
+        &= 2^iT(\dfrac{n}{2^i}) + 2^{i-1}[\log n - \log 2^{i-1}] + 2^{i-2}[\log n - \log 2^{i-2}] + \cdots + 2(\log n - \log 2) + \log n \\
+        &= 2^iT(\dfrac{n}{2^i}) + 2^{i-1}[\log n - (i-1)] + 2^{i-2}[\log n - (i-2)] + \cdots + 2(\log n - 1) + \log n \\
+        &= 2^iT(\dfrac{n}{2^i}) + \log n[2^{i-1} + 2^{i-2} + \cdots + 2 + 1] - [2^{i-1}(i-1) + 2^{i-2}(i-2) + \cdots + 2] \\
+        &= 2^iT(\dfrac{n}{2^i}) + \log n \sum_{j=0}^{i-1} 2^j - \sum_{j=1}^{i-1} j.2^j \\
+        &= 2^iT(\dfrac{n}{2^i}) + \log n. \dfrac{2^i - 1}{2 - 1} - [(i - 1 - 1)2^{i - 1 + 1} + 2] \\
+        &= 2^iT(\dfrac{n}{2^i}) + \log n(2^i - 1) - (i-2)2^i - 2 \\
+\end{aligned} $ \\ \\ \\
+\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+$\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
+$\Leftrightarrow i = \log_2{n}$ \\ \\
+\text{-Vậy:} \\
+$ \begin{aligned}
+    T(n) &= 2^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + \log n(2^{\log_2{n}} - 1) - (\log_2{n} - 2)2^{\log_2{n}} - 2 \\
+        &= nT(1) + \log n(n - 1) - (\log_2{n} - 2)n - 2 \\
+        &= n + n\log n - \log n - n\log n + 2n - 2 \\
+        &= n + 2n - 2 - \log n\\
+        &= 3n - 2 - \log n
+\end{aligned} $\\
+
+\subsection{$T(n) = 8T(\dfrac{n}{2}) + n^3 \quad \quad T(1) = 1$}
+\textbf{Lời giải:} \\
+$ \begin{aligned}
+    T(n) &= 8T(\dfrac{n}{2}) + n^3 \\
+        &= 8[8T(\dfrac{n}{4}) + \dfrac{n^3}{8}] + n^3 \\
+        &= 64T(\dfrac{n}{4}) + n^3 + n^3 \\
+        &= 64[8T(\dfrac{n}{8}) + \dfrac{n^3}{64}] + n^3 + n^3 \\
+        &= 512T(\dfrac{n}{8}) + n^3 + n^3 + n^3 \\
+        &\cdots \cdots \\
+        &= 8^iT(\dfrac{n}{2^i}) + in^3 \\
+\end{aligned} $ \\ \\ \\
+\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+$\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
+$\Leftrightarrow i = \log_2{n}$ \\ \\
+\text{-Vậy:} \\
+$ \begin{aligned}
+    T(n) &= 8^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + \log_2(n).n^3 \\
+        &= n^3T(1) + n^3\log_2{n} \\
+        &= n^3 + n^3\log_2{n} \\
+        &= n^3(1 + \log_2{n}) \\
+        &= n^3(\log_2{2} + \log_2{n}) \\
+        &= n^3\log_2(2n)
+\end{aligned} $\\
+\section{Giải các phương trình đệ quy sau dùng phương trình đặc trưng}
+\begin{enumerate}
+    \item $ \begin{aligned}[t]
+            T(n) &= 4T(n - 1) - 3T(n-2) \\
+            T(0) &= 1 \\
+            T(1) &= 2
+    \end{aligned} $
+
+    \item $ \begin{aligned}[t]
+            T(n) &= 4T(n - 1) - 5T(n - 2) + 2T(n - 3) \\
+            T(0) &= 0 \\
+            T(1) &= 1 \\
+            T(2) &= 2
+    \end{aligned} $
+
+    \item $ \begin{aligned}[t]
+            T(n) &= T(n - 1) + T(n - 2) \\
+            T(0) &= 0 \\
+            T(1) &= 1
+    \end{aligned} $
+
+\end{enumerate}
+
+\end{document}
