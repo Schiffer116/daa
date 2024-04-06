@@ -5,12 +5,10 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{titlesec}
-\usepackage{color}
-\usepackage{xcolor}
 \usepackage{listings}
-\usepackage{array}
 \usepackage{adjustbox}
 \usepackage{booktabs}
+\usepackage{enumitem}
 \geometry{margin=3cm}
 
 \titleformat{\section}
@@ -280,8 +278,90 @@ $ \begin{aligned}
         &= n^3(1 + \log_2{n}) \\
         &= n^3(\log_2{2} + \log_2{n}) \\
         &= n^3\log_2(2n)
-\end{aligned} $\\
+\end{aligned} $
 
+% 2.4
+\subsection{$ T(n) = 4T(\frac{n}{3}) + n; \quad T(1) = 1 $}
+$ \begin{aligned}
+    T(n) &= 4[4T(\frac{n}{9}) + \frac{n}{3}] + n \\
+        &= 16T(\frac{n}{9}) + \frac{4}{3}n + n \\
+        &= 16[4T(\frac{n}{27}) + \frac{n}{9}] + \frac{4}{3}n + n \\
+        &= 64T(\frac{n}{27}) + \frac{16}{9}n + \frac{4}{3}n + n \\
+        &= 4^3T(\frac{n}{3^3}) + {(\frac{4}{3})}^2n + \frac{4}{3}n + n \\
+        &\cdots \\
+        &= 4^{i}T(\frac{n}{3^i}) + \sum_{j = 0}^{i - 1}{(\frac{4}{3})}^j n \\
+        &= 4^{i}T(\frac{n}{3^i}) + n \frac{{(\frac{4}{3})}^i - 1}{\frac{4}{3} - 1}\\
+        &= 4^{i}T(\frac{n}{3^i}) + 3n[{(\frac{4}{3})}^i - 1] \\
+\end{aligned} $
+
+\begin{itemize}[label=-]
+    \item Quá trình dừng lại khi đạt tới $ T(1) $ \\
+        $ \Rightarrow \dfrac{n}{3^i} = 1 $ \\
+        $ \Leftrightarrow i = \log_3n $
+    \item Vậy:\\
+        $ \begin{aligned}
+            T(n) &= 4^{\log_3n} T(\frac{n}{3^{\log_3n}}) + 3n[{(\frac{4}{3})}^{\log_3n} - 1] \\
+                &= n^{\log_3 4} T(\frac{n}{n^{\log_3 3}}) + 3n(\frac{4^{\log_3 n}}{3^{\log_3 n}} - 1) \\
+                &= n^{\log_3 4} T(\frac{n}{n}) + 3n(\frac{n^{\log_3 4}}{n^{\log_3 3}} - 1) \\
+                &= n^{\log_3 4} T(1) + 3n(\frac{n^{\log_3 4}}{n} - 1) \\
+                &= n^{\log_3 4} + 3n^{\log_3 4} - 3n \\
+                &= 4n^{\log_3 4} - 3n \\
+        \end{aligned} $
+\end{itemize}
+
+% 2.5
+\subsection{$ T(n) = 9T(\frac{n}{3}) + n^2; \quad T(1) = 1 $}
+$ \begin{aligned}
+    T(n) &= 9T(\frac{n}{3}) + n^2 \\
+        &= 9[9T(\frac{n}{9}) + \frac{n^2}{9}] + n^2 \\
+        &= 81T(\frac{n}{9}) + 2n^2 \\
+        &= 81[9T(\frac{n}{27}) + \frac{n^2}{81}] + 2n^2 \\
+        &= 729 T(\frac{n}{27}) + 3n^2 \\
+        &\cdots \\
+        &= 9^i T(\frac{n}{3^i}) + in^2 \\
+\end{aligned} $
+
+\begin{itemize}[label=-]
+    \item Quá trình dừng lại khi đạt tới $ T(1) $ \\
+        $ \Rightarrow \dfrac{n}{3^i} = 1 $ \\
+        $ \Leftrightarrow i = \log_3n $
+    \item Vậy:\\
+        $ \begin{aligned}
+            T(n) &= 9^{\log_3n} T(\frac{n}{3^{\log_3n}}) + n^2{\log_3n} \\
+                &= n^{\log_3 9} T(\frac{n}{n^{\log_3 3}}) + n^2{\log_3n} \\
+                &= n^2 T(1) + n^2{\log_3n} \\
+                &= n^2 (\log_3 n + 1) \\
+                &= n^2 \log_3 3n \\
+        \end{aligned} $
+\end{itemize}
+
+% 2.6
+\subsection{$ T(n) = 2T(\sqrt{n}) + 1; \quad T(2) = 0 $}
+$ \begin{aligned}
+    T(n) &= 2T(\sqrt{n}) + 1 \\
+        &= 2[2T(\sqrt[4]{n}) + 1] + 1 \\
+        &= 4T(\sqrt[4]{n}) + 3 \\
+        &= 4[2T(\sqrt[8]{n}) + 1] + 2 + 1 \\
+        &= 8T(\sqrt[8]{n}) + 4 + 2 + 1 \\
+        &\cdots \\
+        &= 2^{i}T(\sqrt[2^i]{n}) + \sum_{j = 0}^{i - 1}2^j \\
+\end{aligned} $
+
+\begin{itemize}[label=-]
+    \item Quá trình dừng lại khi đạt tới $ T(2) $ \\
+        $ \Rightarrow \sqrt[2^i]{n} = 2 $ \\
+        $ \Leftrightarrow n^\frac{1}{2^i} = 2 $ \\
+        $ \Leftrightarrow n = 2^{2^i} $ \\
+        $ \Leftrightarrow i = \log_2\log_2n $
+    \item Vậy:\\
+        $ \begin{aligned}
+            T(n) &= 2^{\log_2\log_2n} T(\sqrt[2^{\log_2\log_2n}]{n}) + \sum_{j = 0}^{\log_2\log_2n - 1}2^j \\
+            &= \log_2n T(\sqrt[\log_2n]{n}) + \frac{2^{\log_2\log_2n} - 1}{2 - 1} \\
+                &= \log_2n T(n^{\log_n2}) + \log_2n - 1 \\
+                &= \log_2n T(2) + \log_2n - 1 \\
+                &= \log_2n - 1 \\
+        \end{aligned} $
+\end{itemize}
 \section{Giải các phương trình đệ quy sau dùng phương trình đặc trưng}
 \begin{enumerate}
     \item $ \begin{aligned}[t]
