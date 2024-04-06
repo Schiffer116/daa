@@ -362,13 +362,56 @@ $ \begin{aligned}
                 &= \log_2n - 1 \\
         \end{aligned} $
 \end{itemize}
+
 \section{Giải các phương trình đệ quy sau dùng phương trình đặc trưng}
 \begin{enumerate}
-    \item $ \begin{aligned}[t]
-            T(n) &= 4T(n - 1) - 3T(n-2) \\
-            T(0) &= 1 \\
-            T(1) &= 2
-    \end{aligned} $
+    \item $ T(n) = 4T(n - 1) - 3T(n-2) \\
+            T(0) = 1 \\
+            T(1) = 2 $ \\
+        Đặt $ T(n) = X^n $ ta có:
+
+        $ \begin{aligned}
+            & X^n = 4X^{n - 1} - 3X^{n - 2} \\
+            \Leftrightarrow & X^n - 4X^{n - 1} + 3X^{n - 2} = 0 \\
+            \Leftrightarrow & X^{n - 2}(X^2 - 4X + 3) = 0 \\
+            \Leftrightarrow & \left[
+            \begin{array}{ll}
+                X^{n - 2} = 0 \\
+                X^2 - 4X + 3 = 0 \\
+            \end{array}
+            \right .
+        \end{aligned} $
+
+        Phương trình đặc trưng: $ \begin{aligned}[t]
+            & X^2 - 4X + 3 = 0 \\
+            & (X - 1)(X - 3) = 0
+        \end{aligned} $
+
+        Phương trình có 2 nghiệm đơn: $ \begin{cases}
+            X_1 = 1 \\
+            X_2 = 3
+        \end{cases} $
+
+        $ T(n) = c_1X_1^n + c_2X_2^n $ \\
+        $ T(n) = c_1 1^n + c_2 3^n $ \\
+        $ T(n) = c_1 + c_2 3^n $
+
+        $ \begin{cases}
+            T(0) = 1 \\
+            T(1) = 2
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            c_1 + c_2 = 1 \\
+            c_1 + 3c_2 = 2
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            c_1 = \frac{1}{2} \\
+            c_2 = \frac{1}{2}
+        \end{cases} $
+
+        $ \Rightarrow T(n) = \dfrac{1}{2} + \dfrac{3^n}{2} $
 
     \item $ \begin{aligned}[t]
             T(n) &= 4T(n - 1) - 5T(n - 2) + 2T(n - 3) \\
@@ -377,6 +420,52 @@ $ \begin{aligned}
             T(2) &= 2
     \end{aligned} $
 
+        Đặt $ T(n) = X^n $ ta có:
+
+        $ \begin{aligned}
+            & X^n = 4X^{n - 1} - 5X^{n - 2} + 2X^{n - 3} \\
+            \Leftrightarrow & X^n - 4X^{n - 1} + 5X^{n - 2} - 2X^{n - 3} = 0 \\
+            \Leftrightarrow & X^{n - 3}(X^3 - 4X^2 + 5X - 2) = 0 \\
+            \Leftrightarrow & \left[
+            \begin{array}{ll}
+                X^{n - 3} = 0 \\
+                X^3 - 4X^2 + 5X - 2 = 0 \\
+            \end{array}
+            \right .
+        \end{aligned} $
+
+        Phương trình đặc trưng: $ \begin{aligned}[t]
+            & X^3 - 4X^2 + 5X - 2 = 0 \\
+            & (X - 2){(X - 1)}^2 = 0
+        \end{aligned} $
+
+        Phương trình có nghiệm đơn $ X_1 = 2 $ và nghiệm kép $ X_2 = 1 $
+
+        $ T(n) = c_1X_1^n + c_2X_2^n + c_3nX_2^n $ \\
+        $ T(n) = c_1 2^n + c_2 1^n + c_3n 1^n $ \\
+        $ T(n) = c_1 2^n + c_2 + c_3n $
+
+        $ \begin{cases}
+            T(0) = 0 \\
+            T(1) = 1 \\
+            T(2) = 2
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            \begin{aligned}
+                c_1 + c_2 + & &= 0 \\
+                c_1 + c_2 + & c_3 &= 1 \\
+                4c_1 + c_2 + & 2c_3 &= 2
+            \end{aligned}
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            c_1 = 0 \\
+            c_2 = 0 \\
+            c_3 = 1
+        \end{cases} $
+
+        $ \Rightarrow T(n) = n $
     \item $ \begin{aligned}[t]
             T(n) &= T(n - 1) + T(n - 2) \\
             T(0) &= 0 \\
