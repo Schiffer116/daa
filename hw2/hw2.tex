@@ -472,6 +472,45 @@ $ \begin{aligned}
             T(1) &= 1
     \end{aligned} $
 
+        Đặt $ T(n) = X^n $ ta có:
+
+        $ \begin{aligned}
+            & X^n = X^{n - 1} + X^{n - 2} \\
+            \Leftrightarrow & X^n - X^{n - 1} - X^{n - 2} = 0 \\
+            \Leftrightarrow & X^{n - 2}(X^2 - X - 1) = 0 \\
+            \Leftrightarrow & \left[
+            \begin{array}{ll}
+                X^{n - 2} = 0 \\
+                X^2 - X - 1 = 0 \\
+            \end{array}
+            \right .
+        \end{aligned} $
+
+        Phương trình đặc trưng: $ X^2 - X - 1  = 0 $
+
+        Phương trình có 2 nghiệm đơn $ X_1 = \dfrac{1 - \sqrt{5}}{2} $ và $ X_2 = \dfrac{1 + \sqrt{5}}{2}  $
+
+        $ T(n) = c_1X_1^n + c_2X_2^n $
+
+        $ T(n) = c_1 {\left(\dfrac{1 - \sqrt{5}}{2}\right)}^n + c_2 {\left(\dfrac{1 + \sqrt{5}}{2}\right)}^n $
+
+        $ \begin{cases}
+            T(0) = 1 \\
+            T(1) = 1
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            c_1 + c_2 = 1 \\
+            c_1 \dfrac{1 - \sqrt{5}}{2} + c_2 \dfrac{1 + \sqrt{5}}{2} = 1 \\
+        \end{cases}
+        \Rightarrow{}
+        \begin{cases}
+            c_1 = \dfrac{5 - \sqrt{5}}{10} \\
+            c_1 = \dfrac{5 + \sqrt{5}}{10}
+        \end{cases} $
+
+        $ \Rightarrow T(n) = \dfrac{5 - \sqrt{5}}{10} {\left(\dfrac{1 - \sqrt{5}}{2}\right)}^n + \dfrac{5 + \sqrt{5}}{10} {\left(\dfrac{1 + \sqrt{5}}{2}\right)}^n  $
+
 \end{enumerate}
 
 \end{document}
