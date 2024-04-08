@@ -105,8 +105,8 @@ long Fibo(int n) {
     \textit{Giải thích:} \\
     \text{-Khi n = 0 hoặc n = 1, số Fibonacci sẽ trả về 1, là một hằng số C1} \\
     $\Rightarrow T(0) = T(1) = C1$ \\
-    \text{-Khi n > 1, số Fibonacci sẽ bằng tổng của 2 số Fibonacci trước đó,} \\ 
-    {hằng số C2 là thời gian tổng hợp/phân chia kết quả.} \\
+    \text{-Khi n > 1, số Fibonacci sẽ bằng tổng của 2 số Fibonacci trước đó, hằng số C2 là thời gian} \\
+    \text{tổng hợp/phân chia kết quả.} \\ 
     $\Rightarrow T(n) = T(n-1) + T(n-2) + C2$ \\
 
 	\item \begin{lstlisting}
@@ -121,15 +121,14 @@ public int g(int n) {
     $T(n) =
     \begin{cases}
     C1 &\text{khi n = 1} \\
-    T(n/2) + C2 &\text{khi n > 1}
+    2T(n/2) + C2 &\text{khi n > 1}
     \end{cases}$ \\
 
     \textit{Giải thích:} \\
     \text{-Khi n = 1, hàm sẽ trả về 2, là một hằng số C1} \\
     $\Rightarrow T(1) = C1$ \\
-    \text{-Khi n > 1, hàm sẽ trả về 3g(n/2) + g(n/2) + 5 = 4g(n/2) + 5,} \\ 
-    \text{hằng số C2 là thời gian tổng hợp/phân chia kết quả} \\
-    $\Rightarrow T(n) = T(n/2) + C2$ \\
+    \text{-Khi n > 1, hàm sẽ gọi đệ quy g(n/2) 2 lần, hằng số C2 là thời gian tổng hợp/phân chia kết quả} \\ 
+    $\Rightarrow T(n) = 2T(n/2) + C2$ \\
 
 	\item \begin{lstlisting}
 long xn(int n) {
@@ -223,10 +222,10 @@ $ \begin{aligned}
         &= 2^iT(\dfrac{n}{2^i}) + n^2 . \dfrac{(\dfrac{1}{2})^i - 1}{\dfrac{1}{2} - 1} \\
         &= 2^iT(\dfrac{n}{2^i}) + 2n^2 [1 - (\dfrac{1}{2})^i] \\
 \end{aligned} $ \\ \\ \\
-\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+\text{- Quá trình dừng lại khi đạt tới T(1)} \\
 $\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
 $\Leftrightarrow i = \log_2{n}$ \\ \\
-\text{-Vậy:} \\
+\text{- Vậy:} \\
 $ \begin{aligned}
     T(n) &= 2^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + 2n^2[1 - (\dfrac{1}{2})^{\log_2{n}}] \\
         &= nT(1) + 2n^2(1 - \dfrac{1}{n}) \\
@@ -251,10 +250,10 @@ $ \begin{aligned}
         &= 2^iT(\dfrac{n}{2^i}) + \log n. \dfrac{2^i - 1}{2 - 1} - [(i - 1 - 1)2^{i - 1 + 1} + 2] \\
         &= 2^iT(\dfrac{n}{2^i}) + \log n(2^i - 1) - (i-2)2^i - 2 \\
 \end{aligned} $ \\ \\ \\
-\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+\text{- Quá trình dừng lại khi đạt tới T(1)} \\
 $\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
 $\Leftrightarrow i = \log_2{n}$ \\ \\
-\text{-Vậy:} \\
+\text{- Vậy:} \\
 $ \begin{aligned}
     T(n) &= 2^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + \log n(2^{\log_2{n}} - 1) - (\log_2{n} - 2)2^{\log_2{n}} - 2 \\
         &= nT(1) + \log n(n - 1) - (\log_2{n} - 2)n - 2 \\
@@ -274,10 +273,10 @@ $ \begin{aligned}
         &\cdots \cdots \\
         &= 8^iT(\dfrac{n}{2^i}) + in^3 \\
 \end{aligned} $ \\ \\ \\
-\text{-Quá trình dừng lại khi đạt tới T(1)} \\
+\text{- Quá trình dừng lại khi đạt tới T(1)} \\
 $\Rightarrow \dfrac{n}{2^i} = 1$ \\ \\
 $\Leftrightarrow i = \log_2{n}$ \\ \\
-\text{-Vậy:} \\
+\text{- Vậy:} \\
 $ \begin{aligned}
     T(n) &= 8^{\log_2{n}}T(\dfrac{n}{2^{\log_2{n}}}) + \log_2(n).n^3 \\
         &= n^3T(1) + n^3\log_2{n} \\
@@ -520,4 +519,96 @@ $ \begin{aligned}
 
 \end{enumerate}
 
+\section{Giải phương trình đệ quy sau dùng phương pháp hàm sinh}
+\begin{enumerate}
+    \item 
+    $T(n) = 
+    \begin{cases}
+        1 & \text{khi n = 0} \\
+        2 & \text{khi n = 1} \\
+        7T(n - 1) + 12T(n-2) & \text{khi n $\geq$ 2}
+    \end{cases} $
+    \item 
+    $T(n+1) = T(n) + 3n \quad n \geq 0 \\
+    T(0) = 7$
+    \item 
+    \text{Thành lập phương trình đệ quy và giải dùng phương pháp hàm sinh. Lưu ý: T(n) là số phép} \\
+    \text{cộng cần thực hiện khi gọi Zeta(k).Đếm chính xác số phép cộng, không dùng hằng số c1, c2} \\ 
+    \text{tượng trưng.} \\
+    \begin{lstlisting}
+Zeta(n) {
+    if (n == 0) Zeta = 6;
+    else {
+        k = 0;
+        Ret = 0;
+        while($k \leq n-1$) {
+            Ret = Ret + Zeta(k);
+            k = k + 1;
+        }
+        Zeta = Ret;
+    }
+}
+    \end{lstlisting}
+    \textbf{Lời giải:} \\
+    $T(n) =
+    \begin{cases}
+        0 & \text{khi n = 0} \\
+        \sum_{k=0}^{n-1} T(k) & \text{khi n $\geq$ 1}
+    \end{cases}$ \\
+    \textit{Giải thích:} \\
+    \text{-Khi n = 0, số phép cộng cần thực hiện là 0} \\
+    $\Rightarrow T(0) = 0$ \\
+    \text{-Khi n > 0, số phép cộng cần thực hiện là tổng các giá trị của T(k) với k chạy từ 0 tới n - 1} \\
+    \text{và trong vòng lặp có số con k = n, có 2 phép cộng được thực hiện.} \\
+    $\Rightarrow T(n) = \sum_{k=0}^{n-1} T(k) + 2n$ \\
+
+    \text{-Biến đổi T(n):} \\
+    $T(1) = T(0) + 2*1 = 2$ \\
+    $T(2) = T(0) + T(1) + 2*2 = 6$ \\
+    $T(3) = T(0) + T(1) + T(2) + 2*3 = 14$ \\
+    $T(4) = T(0) + T(1) + T(2) + T(3) + 2*4 = 30$ \\
+    $T(5) = T(0) + T(1) + T(2) + T(3) + T(4) + 2*5 = 62$ \\
+    $\cdots \cdots$ \\
+    $\Rightarrow T(n) =
+    \begin{cases}
+        0 & \text{khi n = 0} \\
+        2T(n-1) + 2 & \text{khi n $\geq$ 1}
+    \end{cases}$ \\ 
+
+    \text{-Hàm sinh của dãy vô hạn $ \{T(n)\}_{0}^{\infty}$ là:} \\
+    $\begin{aligned}
+        f(x) &= \sum_{n=0}^{\infty} T(n)x^n \\
+            &= \sum_{n=1}^{\infty} (2T(n-1) + 2)x^n \\
+            &= 2\sum_{n=1}^{\infty} T(n-1)x^{n} + 2\sum_{n=1}^{\infty} x^n \\
+        \text{Cho } A &= \sum_{n=1}^{\infty} T(n-1)x^{n} \\
+                    &= x\sum_{n=1}^{\infty} T(n-1)x^{n-1} \\
+                    &= xf(x) \\
+        \text{Cho } B &= \sum_{n=1}^{\infty} x^n \\
+                    &= x\sum_{n=1}^{\infty} x^{n-1} \\
+                    &= \dfrac{x}{1-x} \\
+    \end{aligned}$ \\
+    $\begin{aligned}
+    \Rightarrow f(x) &= 2xf(x) + \dfrac{2x}{1-x} \\
+                    (1-2x)f(x) &= \dfrac{2x}{1-x} \\
+                    f(x) &= \dfrac{2x}{(1-x)(1-2x)} \\
+                    f(x) &= \dfrac{U}{1-2x} - \dfrac{V}{1-x} \\
+    \end{aligned}$ \\ \\
+
+    $\begin{cases}
+        U + V = 0 \\
+        -U - 2V = 2
+    \end{cases}$
+    $\Leftrightarrow \begin{cases}
+        U = 2 \\
+        V = -2
+    \end{cases}$ \\ \\
+
+    $\begin{aligned}
+        \Rightarrow f(x) &= \dfrac{2}{1-2x} - \dfrac{2}{1-x} \\
+                        &= 2\sum_{n=0}^{\infty} (2x)^n - 2\sum_{n=0}^{\infty} x^n \\
+                        &= \sum_{n=0}^{\infty} (2.2^n - 2)x^n \\
+    \end{aligned}$ \\
+    \text{-Vậy:} \\
+    $T(n) = 2.2^n - 2 = 2^{n+1} - 2$
+\end{enumerate}
 \end{document}
