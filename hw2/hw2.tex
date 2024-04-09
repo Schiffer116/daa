@@ -528,90 +528,129 @@ $ \begin{aligned}
         1 & \text{khi n = 0} \\
         2 & \text{khi n = 1} \\
         7T(n - 1) + 12T(n-2) & \text{khi n $\geq$ 2}
-    \end{cases} $
-    \textbf{Lời giải:} \\ \\
-    $\begin{aligned}  \\
-      \text{-Hàm sinh của dãy vô hạn } \{T(n)\}_{0}^{\infty}
-      \text{ là }\\
-    f(x) &= \sum_{n = 0}^{\infty}T(n).x^n \\
-         &= \sum_{n = 2}^{\infty} \{ 7T(n-1)-12T(n-2) \}x^n + T(0)x^0 + T(1)x^1 \\
-         &= 7\sum_{n = 2}^{\infty}T(n-1).x^n - 12\sum_{n = 2}^{\infty} T(n-2).x^n + 2x +1 \\
-    \end{aligned} $ 
+    \end{cases} $ \\
+    \textbf{Lời giải:} \\
+    \text{-Hàm sinh của dãy vô hạn $\{T(n)\}_{0}^{\infty}$ là:} \\
     $\begin{aligned}
-    \text{- Xét: }\\
-    \text{A}   
-          &=x\sum_{n = 2}^{\infty}T(n-1).x^{n-1}\\
-          &=x\sum_{n = 1}^{\infty}T(n-1).x^{n-1} - x.T(0).x^0\\
-          &=x.f(x) - x\\
-    \text{B}
-          &=\sum_{n = 2}^{\infty}T(n-2).x^n\\
-          &=x^2.sum_{n = 1}^{\infty}T(n-2).x^{n-2}\\
-          &=x^2.f(x)
+        f(x) &= \sum_{n = 0}^{\infty}T(n).x^n \\
+            &= \sum_{n = 2}^{\infty} \{ 7T(n-1)-12T(n-2) \}x^n + T(0)x^0 + T(1)x^1 \\
+            &= 7\sum_{n = 2}^{\infty}T(n-1).x^n - 12\sum_{n = 2}^{\infty} T(n-2).x^n + 2x +1 \\
+    \end{aligned} $ \\
+
+    \text{-Xét: }\\
+    $\begin{aligned}
+        A &= \sum_{n = 2}^{\infty}T(n-1).x^n \\
+        &=x\sum_{n = 2}^{\infty}T(n-1).x^{n-1}\\
+        &=x\sum_{n = 1}^{\infty}T(n-1).x^{n-1} - x.T(0).x^0\\
+        &=x.f(x) - x\\
     \end{aligned}$\\
     $\begin{aligned}
-      \text{- Suy ra: }\\
-      \text{f(x)}   
-            &=7\{xf(x)-x\}-12x^2.f(X)+2x+1\\
+        B &=\sum_{n = 2}^{\infty}T(n-2).x^n\\
+        &=x^2\sum_{n = 2}^{\infty}T(n-2).x^{n-2}\\
+        &=x^2.f(x)
     \end{aligned}$\\
-            $\Rightarrow f(x).(12x^2-7x+1) = 1-5x\\\\
-            \Rightarrow f(x) = \dfrac{1-5x}{(1-3x).(1-4x)} \\\\
-            \Rightarrow f(x)= \dfrac{2}{1-3x} + \dfrac{1}{1-4x}\\\\
-            f(x)=2\sum_{n = 0}^{\infty}(3x)^n$ - $\sum_{n = 0}^{\infty}(4x)^n$\\\\
-            f(x)=$\sum_{n = 0}^{\infty}(2.3^n-4^n).x^n$\\\\
-    $\Rightarrow T(n)=2.3^n-4^n$\\\\
+
+    \text{-Suy ra: }\\
+    $\begin{aligned}
+        f(x) &=7(xf(x)-x)-12x^2.f(x)+2x+1\\
+            &=7xf(x)-7x-12x^2.f(x)+2x+1\\
+            &= \dfrac{1-5x}{12x^2-7x+1}\\
+            &= \dfrac{1-5x}{(1-3x)(1-4x)}\\
+            &= \dfrac{U}{1-3x} + \dfrac{V}{1-4x}\\
+    \end{aligned}$\\
+
+    \text{-Ta có:} \\
+    $\begin{aligned}
+        1-5x &= U(1-4x) + V(1-3x)\\
+            &= U - 4Ux + V - 3Vx\\
+            &= U + V - (4U + 3V)x\\
+    \end{aligned}$\\
+    $\begin{cases}
+        U + V = 1\\
+        4U + 3V = 5
+    \end{cases}$
+    $\Leftrightarrow \begin{cases}
+        U = 2\\
+        V = -1
+    \end{cases}$\\
+
+    $\begin{aligned}
+        \Rightarrow f(x) &= \dfrac{2}{1-3x} - \dfrac{1}{1-4x}\\
+                        &= 2\sum_{n = 0}^{\infty} (3x)^n - \sum_{n = 0}^{\infty} (4x)^n\\
+                        &= \sum_{n=0}^{\infty} (2.3^n-4^n).x^n
+    \end{aligned}$\\
     Vậy $T(n)=2.3^n-4^n$\\
     \item
     $T(n+1) = T(n) + 3n \quad n \geq 0 \\
     T(0) = 7$\\
     Link tham khảo: \url{https://en.wikipedia.org/wiki/Generating_function}\\
-    \text{Công thức tham khảo:}
-    \vfill
-    \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{thamkhao}
-    \end{figure}
-  \vfill
-    \textbf{Lời giải:} \\ \\
-    \text{- Khi n = 0 thì}\\
-    \text{+ T(1) = T(0) = 7}\\\\
-    \text{- T(n+1) = T(n) + 3n}\\\\
-    $\Rightarrow$ \text{T(n) = T(n+1) - 3n}\\
-    $\begin{aligned}  \\
-      \text{-Hàm sinh của dãy vô hạn } & \{T(n)\}_{0}^{\infty}
-      \text{ là }\\
-    f(x) &= \sum_{n = 0}^{\infty}T(n).x^n \\
-         &= \sum_{n = 0}^{\infty} \{ T(n+1)-3n \}x^n\\
-         &= \sum_{n = 0}^{\infty}T(n+1).x^n - 3\sum_{n = 0}^{\infty}n.x^n \\
-    \end{aligned} $ \\
+
+    \text{Công thức tham khảo:} \\
+    $\sum_{n=0}^{\infty}\binom{n+2}{2} x^n = \dfrac{1}{(1-x)^3}$\\
+
+    \textbf{Lời giải:} \\
     $\begin{aligned}
-    \text{- Xét: }\\
-    \text{A}   
-          &=\sum_{n = 0}^{\infty}T(n+1).x^n\\
-          &=\dfrac{1}{x}\sum_{n = 0}^{\infty}T(n+1).x^{n+1}\\
-          &=\dfrac{f(x)}{x} - \dfrac{7}{x}\\
-    \text{B}
-          &=\sum_{n = 0}^{\infty}n.x^n\\
+        T(n+1) &= T(n) + 3n\\
+        T(n) &= T(n+1) - 3n\\
+    \end{aligned}$\\
+    \text{-Hàm sinh của dãy vô hạn $\{T(n)\}_{0}^{\infty}$ là:} \\
+    $\begin{aligned}
+        f(x) &= \sum_{n = 0}^{\infty}T(n).x^n \\
+            &= \sum_{n = 0}^{\infty} \{ T(n+1)-3n \}x^n\\
+            &= \sum_{n = 0}^{\infty}T(n+1).x^n - 3\sum_{n = 0}^{\infty}n.x^n \\
+    \end{aligned} $ \\
+
+    \text{-Xét: }\\
+    $\begin{aligned}   
+          A &=\sum_{n = 0}^{\infty}T(n+1).x^n\\
+            &=\dfrac{1}{x}\sum_{n = 0}^{\infty}T(n+1).x^{n+1}\\
+            &=\dfrac{1}{x}(\sum_{n=0}^{\infty}T(n).x^{n} - T(0)x^0)\\
+            &=\dfrac{1}{x}(f(x)-7)\\
+            &=\dfrac{f(x)}{x} - \dfrac{7}{x}\\
+          B &=\sum_{n = 0}^{\infty}n.x^n\\
           &=\dfrac{x}{(1-x)^2} \\
     \end{aligned}$\\
-    $\begin{aligned}
-      \text{- Suy ra: }\\
-      \text{f(x)}   
-            &=\dfrac{f(x)}{x} - \dfrac{7}{x}- \dfrac{3x}{(1-x)^2}\\
+
+    \text{-Suy ra: }\\
+    $\begin{aligned}   
+        f(x) &=\dfrac{f(x)}{x} - \dfrac{7}{x}- \dfrac{3x}{(1-x)^2}\\
+            &= \dfrac{-7(1-x)^2-3x^2}{x(1-x)^2(1-\dfrac{1}{x})}\\
+            &= \dfrac{-7 + 14x - 7x^2 - 3x^2}{(x-1)(1-x)^2}\\
+            &= \dfrac{-10x^2+14x-7}{(x-1)(1-x)^2}\\
+            &= \dfrac{10x^2-14x+7}{(1-x)^3}\\
+            &= \dfrac{U}{1-x}+\dfrac{V}{(1-x)^2}+\dfrac{W}{(1-x)^3}\\
     \end{aligned}$\\
-            $\Rightarrow f(x).(1-\dfrac{1}{x}) = \dfrac{-7.(1-x)^2-3x^2}{x.(1-x)^2}\\\\
-            \Rightarrow f(x).(1-\dfrac{1}{x}) = \dfrac{-10x^2+14x-7}{x.(1-x)^2} \\\\
-            \Rightarrow f(x)=\dfrac{10x^2-14x+7}{(1-x)^3}\\\\$
-            f(x)=$\dfrac{10}{1-x}-\dfrac{6}{(1-x)^2}+\dfrac{3}{(1-x)^3}$\\\\
-            f(x)=$10\sum_{n = 0}^{\infty}x^n + 3\sum_{n = 0}^{\infty}\binom{n+1}{2}.x^n - 6\sum_{n = 0}^{\infty}(n+1)x^n $\\\\
-            f(x)=$\sum_{n = 0}^{\infty}\{ 10 - 6(n+1) +3\binom{n+1}{2}\}.x^n$\\\\
-            f(x)=$\sum_{n = 0}^{\infty}\{ 10 - 6n - 6 +\dfrac{3}{2}(n+1)(n+2)\}.x^n$\\\\
-            $\Rightarrow T(n) = 10 - 6n - 6 +\dfrac{3}{2}(n+1)(n+2)$\\\\
-    Vậy $T(n) = 10 - 6n - 6 +\dfrac{3}{2}(n+1)(n+2)$
+    
+    \text{-Ta có:} \\
+    $\begin{aligned}   
+        10x^2-14x+7 &= U(1-x)^2 + V(1-x) + W\\
+            &= U - 2Ux + Ux^2 + V - Vx + W\\
+            &= Ux^2 + (-2U+V)x + (U+V+W)\\
+    \end{aligned}$\\
+    $\begin{cases}
+        U = 10\\
+        -2U - V = -14\\
+        U + V + W = 7
+    \end{cases}$
+    $\Leftrightarrow \begin{cases}
+        U = 10\\
+        V = -6\\
+        W = 3
+    \end{cases}$\\
+
+    $\begin{aligned}
+        \Rightarrow f(x) &= \dfrac{10}{1-x} - \dfrac{6}{(1-x)^2} + \dfrac{3}{(1-x)^3}\\
+                        &= 10\sum_{n=0}^{\infty}x^n - 6\sum_{n=0}^{\infty}(n+1)x^n + 3\sum_{n=0}^{\infty}\binom{n+2}{2} x^n\\
+                        &= \sum_{n=0}^{\infty}(10-6(n+1)+3\binom{n+2}{2})x^n\\
+                        &= \sum_{n=0}^{\infty}(10-6n-6+3\dfrac{(n+2)!}{2!(n+2-2)!})x^n\\
+                        &= \sum_{n=0}^{\infty}(10-6n-6+\dfrac{3}{2}(n+1)(n+2))x^n\\
+                        &= \sum_{n=0}^{\infty}(\dfrac{3}{2}n^2 - \dfrac{3}{2}n + 7)x^n\\
+    \end{aligned}$\\
+    Vậy $T(n)=\dfrac{3}{2}n^2 - \dfrac{3}{2}n + 7$\\
 
     \item 
     \text{Thành lập phương trình đệ quy và giải dùng phương pháp hàm sinh. Lưu ý: T(n) là số phép} \\
     \text{cộng cần thực hiện khi gọi Zeta(k).Đếm chính xác số phép cộng, không dùng hằng số c1, c2} \\ 
-    \text{tượng trưng.} \\
     \begin{lstlisting}
 Zeta(n) {
     if (n == 0) Zeta = 6;
@@ -662,14 +701,11 @@ Zeta(n) {
                     &= xf(x) \\
         \text{Cho } B &= \sum_{n=1}^{\infty} x^n \\
                     &= x\sum_{n=1}^{\infty} x^{n-1} \\
-                    &= \dfrac{x}{1-x} \\
+                    &= \dfrac{x}{1-x} \\ \\
+        \Rightarrow f(x) &= 2xf(x) + \dfrac{2x}{1-x} \\
+        &= \dfrac{2x}{(1-x)(1-2x)} \\
+        &= \dfrac{U}{1-2x} + \dfrac{V}{1-x} \\
     \end{aligned}$ \\
-    $\begin{aligned}
-    \Rightarrow f(x) &= 2xf(x) + \dfrac{2x}{1-x} \\
-                    (1-2x)f(x) &= \dfrac{2x}{1-x} \\
-                    f(x) &= \dfrac{2x}{(1-x)(1-2x)} \\
-                    f(x) &= \dfrac{U}{1-2x} - \dfrac{V}{1-x} \\
-    \end{aligned}$ \\ \\
 
     $\begin{cases}
         U + V = 0 \\
@@ -678,7 +714,7 @@ Zeta(n) {
     $\Leftrightarrow \begin{cases}
         U = 2 \\
         V = -2
-    \end{cases}$ \\ \\
+    \end{cases}$ \\
 
     $\begin{aligned}
         \Rightarrow f(x) &= \dfrac{2}{1-2x} - \dfrac{2}{1-x} \\
