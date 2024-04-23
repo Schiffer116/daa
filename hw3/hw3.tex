@@ -66,4 +66,94 @@
 \newgeometry{margin=3cm}
 \section{}
 \section{Với mỗi nhóm bên dưới, hãy sắp xếp tăng dần "theo Big-O nhỏ nhất", có giải thích ngắn gọn cách so sánh}
+\textit{Group1}\\
+$\begin{aligned}
+    f_1(n) &= \binom{n}{100} = \dfrac{n!}{100!(n-100)!} = \dfrac{n(n-1)(n-2)...(n-99)}{100!} = O(n^{100}) \\
+    f_2(n) &= n^100 = O(n^{100}) \\
+    f_3(n) &= \dfrac{1}{n} = n^{-1} = O(n^{-1}) \\
+    f_4(n) &= 10^{1000} n = O(n) \\
+    f_5(n) &= nlogn = O(n^{1 + c}) \quad (\text{vì } logn = O(n^c), \text{c có thể rất nhỏ}) \\
+\end{aligned}$ \\ \\
+$\Rightarrow f_3(n) < f_4(n) < f_5(n) < f_2(n) = f_1(n) \quad (\text{vì } O(n^{-1}) < O(n) < O(n^{1+c}) < O(n^{100}))$\\ \\
+\textit{Group2}\\
+$\begin{aligned}
+    f_1(n) &= 2^{2^{1000000}} = O(1) \\
+    f_2(n) &= 2^{100000n} = O((2^{100000})^n) \\
+    f_3(n) &= \binom{n}{2} = \dfrac{n!}{2!(n-2)!} = \dfrac{n(n-1)}{2} = O(n^2) \\
+    f_4(n) &= n\sqrt{n} = n^{\frac{3}{2}} = O(n^{\frac{3}{2}})\\ 
+\end{aligned}$ \\ \\
+$\Rightarrow f_1(n) < f_4(n) < f_3(n) < f_2(n) \quad (\text{vì } O(1) < O(n^{\frac{3}{2}}) < O(n^2) < O(a^n) \text{ với a > 1})$\\ \\
+\textit{Group3}\\
+$\begin{aligned}
+    f_1(n) &= n^{\sqrt{n}} \\
+    f_2(n) &= 2^n \\
+    f_3(n) &= n^{10}.2^{\frac{n}{2}} \\
+    f_4(n) &= \sum_{i=1}^{n} (i+1) \\
+\end{aligned}$ \\
+\text{Ta có:} \\
+$\begin{aligned}
+    f_1(n) &= n^{\sqrt{n}} = (2^{\log_2{n}})^{\sqrt{n}} = 2^{n^{\frac{1}{2}}.\log_2{n}} = 2^{O(n^{c + \frac{1}{2}})} \quad (\text{c có thể rất nhỏ})\\
+    f_2(n) &= 2^n = 2^{O(n)} \\
+    f_3(n) &= n^{10}.2^{\frac{n}{2}} = (2^{log_2{n}})^{10}.2^{\frac{n}{2}} = 2^{10.\log_2{n} + \frac{n}{2}} = 2^{O(n)} \\
+    f_4(n) &= \sum_{i=1}^{n} (i+1) = \dfrac{n(n+1)}{2} + n = O(n^2) \\
+\end{aligned}$ \\ \\
+$\Rightarrow f_1(n) < f_2(n) = f_3(n) \quad (\text{vì cùng cơ số 2 và } O(n^{c + \frac{1}{2}}) < O(n))$\\
+\text{Mà } $f_4(n) < f_1(n) \quad (\text{vì } n^2 < n^{\sqrt{n}})$\\
+$\Rightarrow f_4(n) < f_1(n) < f_2(n) = f_3(n)$\\ \\
+{\textit{Group4}} \\
+$\begin{aligned}
+    f_6(n) &= n^{\sqrt{n}} = (2^{\log_2{n}})^{\sqrt{n}} = 2^{n^{\frac{1}{2}}.\log_2{n}} = 2^{O(n^{c + \frac{1}{2}})} \quad (\text{c có thể rất nhỏ})\\
+    f_7(n) &= \pi^n = (2^{\log_2{\pi}})^n = 2^{n.\log_2{\pi}} = 2^{O(n)}\\
+    f_8(n) &= 2^{n^4} = 2^{O(n^4)} \\
+    f_9(n) &= n^{4logn} = (2^{\log_2{n}})^{4\log_2{n}} = 2^{4\log_2{n}.\log_2{n}} = 2^{O(n^{2c})} \quad (\text{c có thể rất nhỏ})\\
+\end{aligned}$ \\ \\
+$\Rightarrow f_9(n) < f_6(n) < f_7(n) < f_8(n) \\
+(\text{vì cùng cơ số 2 và } O(n^{2c}) < O(n^{c + \frac{1}{2}}) < O(n) < O(n^4))$\\ \\
+\textit{Group5}\\
+$\begin{aligned}
+    f_6(n) &= n^{\sqrt{n}} = (2^{\log_2{n}})^{\sqrt{n}} = 2^{n^{\frac{1}{2}}.\log_2{n}} = 2^{O(n^{c + \frac{1}{2}})} \quad (\text{c có thể rất nhỏ})\\
+    f_7(n) &= n^{\log n} = (2^{\log_2{n}})^{\log_2{n}} = 2^{\log_2{n}.\log_2{n}} = 2^{O(n^{2c})}  \quad (\text{c có thể rất nhỏ})\\
+    f_8(n) &= 2^{\frac{n}{2}} = 2^{O(n)} \\
+    f_9(n) &= 3^{\sqrt{n}} = (2^{\log_2{3}})^{\sqrt{n}} = 2^{n^{\frac{1}{2}}.\log_2{3}} = 2^{O(n^{\frac{1}{2}})}\\
+    f_{10}(n) &= 4^{n^{\frac{1}{4}}} = (2^2)^{n^{\frac{1}{4}}} = 2^{2.n^{\frac{1}{4}}} = 2^{O(n^{\frac{1}{4}})}\\
+\end{aligned}$ \\
+$\Rightarrow f_7(n) < f_6(n) < f_{10}(n) < f_9(n) < f_8(n)$ \\
+$(\text{vì cùng cơ số 2 và } O(n^{2c}) < O(n^{c + \frac{1}{2}}) < O(n^{\frac{1}{4}}) < O(n^{\frac{1}{2}}) < O(n))$\\ \\
+\textit{Group6}\\
+$\begin{aligned}
+    f_1(n) &= n^{0.999999}logn = O(n^{0.999999 + c}) \quad (\text{c có thể rất nhỏ}) \\
+    f_2(n) &= 10000000n = O(n) \\
+    f_3(n) &= 1.000001^n = O(1.000001^n) \\
+    f_4(n) &= n^2 = O(n^2) \\
+\end{aligned}$ \\
+$\Rightarrow f_1(n) < f_2(n) < f_4(n) < f_3(n) \quad (\text{vì } O(n^{0.999999 + c}) < O(n) < O(n^2) < O(a^n) \text{ với a > 1})$\\ \\
+\textit{Group7}\\
+$\begin{aligned}
+    f_1(n) &= n^{\pi} \\
+    f_2(n) &= \pi^n \\
+    f_3(n) &= \binom{n}{5} \\\
+    f_4(n) &= \sqrt{2^{\sqrt{n}}} \\
+    f_5(n) &= \binom{n}{n-4} \\
+    f_6(n) &= 2^{log^4n} \\
+    f_7(n) &= n^{5.(logn)^2} \\
+    f_8(n) &= n^4 \binom{n}{4} \\
+\end{aligned}$ \\
+\text{Ta có:} \\
+$\begin{aligned}
+    f_1(n) &= n^{\pi} = O(n^{\pi}) \\
+    f_3(n) &= \binom{n}{5} = \dfrac{n!}{5!(n-5)!} = \dfrac{n(n-1)(n-2)(n-3)(n-4)}{5!} = O(n^5) \\
+    f_5(n) &= \binom{n}{n-4} = \dfrac{n!}{(n-4)!4!} = \dfrac{n(n-1)(n-2)(n-3)}{4!} = O(n^4) \\
+    f_8(n) &= n^4 \binom{n}{4} = n^4.\dfrac{n!}{4!(n-4)!} = n^4.\dfrac{n(n-1)(n-2)(n-3)}{4!} = O(n^8) \\
+\end{aligned}$ \\
+$\Rightarrow f_1(n) < f_5(n) < f_3(n) < f_8(n) \quad (\text{vì } O(n^{\pi}) < O(n^4) < O(n^5) < O(n^8))$\\ \\
+$\begin{aligned}
+    f_2(n) &= \pi^n = (2^{\log_2{\pi}})^n = 2^{n.\log_2{\pi}} = 2^{O(n)} \\
+    f_4(n) &= \sqrt{2^{\sqrt{n}}} = (2^{\sqrt{n}})^{\frac{1}{2}} = 2^{n^{\frac{1}{2}}.\frac{1}{2}} = 2^{O(n^{\frac{1}{2}})} \\
+    f_6(n) &= 2^{log^4n} = 2^{O(n^{4c})} \quad (\text{c có thể rất nhỏ}) \\
+    f_7(n) &= n^{5.(logn)^2} = (2^{\log_2{n}})^{5.(\log_2{n})^2} = 2^{5.(\log_2{n})^3} = 2^{O(n^{3c})} \quad (\text{c có thể rất nhỏ})\\
+\end{aligned}$ \\
+$\Rightarrow f_7(n) < f_6(n) < f_4(n) < f_2(n) \\
+(\text{vì cùng cơ số 2 và } O(n^{3c}) < O(n^{4c}) < O(n^{\frac{1}{2}}) < O(n))$\\ \\
+\text{Mà } $f_8(n) < f_7(n) \quad (\text{vì 8 chỉ là một hằng số còn $logn$ phụ thuộc vào n nên } n^8 < n^{5.(logn)^2})$\\
+$\Rightarrow f_1(n) < f_5(n) < f_3(n) < f_8(n) < f_7(n) < f_6(n) < f_4(n) < f_2(n)$\\ \\
 \end{document}
