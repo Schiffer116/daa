@@ -9,6 +9,7 @@
 \usepackage{adjustbox}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{amssymb}
 \geometry{margin=3cm}
 
 \titleformat{\section}
@@ -156,4 +157,48 @@ $\Rightarrow f_7(n) < f_6(n) < f_4(n) < f_2(n) \\
 (\text{vì cùng cơ số 2 và } O(n^{3c}) < O(n^{4c}) < O(n^{\frac{1}{2}}) < O(n))$\\ \\
 \text{Mà } $f_8(n) < f_7(n) \quad (\text{vì 8 chỉ là một hằng số còn $logn$ phụ thuộc vào n nên } n^8 < n^{5.(logn)^2})$\\
 $\Rightarrow f_1(n) < f_5(n) < f_3(n) < f_8(n) < f_7(n) < f_6(n) < f_4(n) < f_2(n)$\\ \\
+\section{Chứng minh, dùng định nghĩa của các ký hiệu tiệm cận (không dùng lim)}
+\begin{enumerate}
+    \item $n^4 + n + 1 \notin O(n^2)$ \\ \\
+    \text{Ta có:} \\
+    $n^4 + n + 1 > n^2 \quad \forall n \geq 1$ \\ 
+    $\Rightarrow$ \text{Không tồn tại 1 hằng số dương c nào thỏa} \\
+    $n^4 + n + 1 \leq c.n^2 \quad \forall n \geq n_0 (n_0 \in \mathbb{N})$
+    $\text{Vậy } n^4 + n + 1 \notin O(n^2)$
+
+    \item $O(c.f(n)) = O(f(n)) \text{ với c là hằng số}$ \\ \\
+    \text{- Xét một hàm bất kỳ g(n) $\in O(c.f(n))$} \\
+    $\Rightarrow \exists c_1 \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:}$ \\
+    $g(n) \leq c_1.(cf(n)) \quad \forall n \geq n_0$ \\
+    $g(n) \leq (c_1.c).f(n)$ \\
+    $\Rightarrow \exists d = c_1.c \in \mathbb{R^+},n_1 = n_0 \in \mathbb{N} \text{ sao cho:}$ \\
+    $g(n) \leq d.f(n) \quad \forall n \geq n_1$ \\
+    $\Rightarrow g(n) \in O(f(n)) \quad (1)$ \\
+
+    \text{- Xét một hàm bất kỳ g(n) $\in O(f(n))$} \\
+    $\Rightarrow \exists c_1 \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:}$ \\
+    $g(n) \leq c_1.f(n) \quad \forall n \geq n_0$ \\
+    $g(n) \leq \dfrac{c_1}{c}.(c.f(n))$ \\
+    $\Rightarrow \exists d = \dfrac{c_1}{c} \in \mathbb{R^+},n_1 = n_0 \in \mathbb{N} \text{ sao cho:}$ \\
+    $g(n) \leq d.(cf(n)) \quad \forall n \geq n_1$ \\
+    $\Rightarrow g(n) \in O(c.f(n)) \quad (2)$ \\
+
+    \text{Từ (1) và (2) ta có:} $O(c.f(n)) = O(f(n))$\\
+    \text{Vậy } $O(c.f(n)) = O(f(n))$
+
+    \item $\text{Nếu } f(n) \in O(g(n)) \text{ và } g(n) \in O(h(n)) \text{ thì } f(n) \in O(h(n))$ \\ \\
+    \text{- Xét $f(n) \in O(g(n))$} \\
+    $\Rightarrow \exists c \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:}$ \\
+    $f(n) \leq c.g(n) \quad \forall n \geq n_0 \quad (1)$ \\
+
+    \text{- Xét $g(n) \in O(h(n))$} \\
+    $\Rightarrow \exists c_1 \in \mathbb{R^+}, n_1 \in \mathbb{N} \text{ sao cho:}$ \\
+    $g(n) \leq c_1.h(n) \quad \forall n \geq n_1 \quad (2)$ \\
+
+    \text{Từ (1) và (2) ta có:} $f(n) \leq (c.c_1)h(n)$\\
+    $\Rightarrow \exists d = c.c_1 \in \mathbb{R^+},n_2 = \max\{n_0, n_1\} \in \mathbb{N} \text{ sao cho:}$ \\
+    $f(n) \leq d.h(n) \quad \forall n \geq n_2$ \\
+    $\Rightarrow f(n) \in O(h(n))$\\
+    \text{Vậy giả thiết ở câu c đã được chứng minh} \\
+\end{enumerate}
 \end{document}
