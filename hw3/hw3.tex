@@ -10,6 +10,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{array}
 \geometry{margin=3cm}
 
 \titleformat{\section}
@@ -65,7 +66,85 @@
 \maketitle
 \pagebreak
 \newgeometry{margin=3cm}
-\section{}
+\section{Bài tập 1: So sánh thời gian chạy}
+\renewcommand{\arraystretch}{1.25} 
+\begin{table}[h]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{llllllll}
+    \hline
+    \textbf{} & \textbf{1 second} & \textbf{1 minute} & \textbf{1 hour} & \textbf{1 day} & \textbf{1 month} & \textbf{1 year} & \textbf{1 century} \\
+    \hline
+    $\lg n$ & $2^{10^6}$ & $2^{6\cdot10^7}$ & $2^{36\cdot10^8}$ & $2^{864\cdot10^8}$ & $2^{25920\cdot10^8}$ & $2^{315360\cdot10^8}$ & $2^{31556736\cdot10^8}$ \\
+    $\sqrt{n}$ & $10^{12}$ & $36 \cdot 10^{14}$ & $1296 \cdot 10^{16}$ & $746496 \cdot 10^{16}$ & $6718464 \cdot 10^{18}$ & $994519296 \cdot 10^{18}$ & $995827586973696 \cdot 10^{16}$ \\
+    $n$ & $10^6$ & $6 \cdot 10^7$ & $36 \cdot 10^8$ & $864 \cdot 10^8$ & $2592 \cdot 10^9$ & $31536 \cdot 10^9$ & $31556736 \cdot 10^8$ \\
+    $n \lg n$ & 62746 & 2801417 & 133378058 & 2755147513 & 71870856404 & 797633893349 & 68654697441062 \\
+    $n^2$ & 1000 & 7745 & 60000 & 293938 & 1609968 & 5615692 & 56175382 \\
+    $n^3$ & 100 & 391 & 1532 & 4420 & 13736 & 31593 & 146677 \\
+    $2^n$ & 19 & 25 & 31 & 36 & 41 & 44 & 51 \\
+    $n!$ & 9 & 11 & 12 & 13 & 15 & 16 & 17 \\
+    \hline
+    \end{tabular}}
+    \end{table}
+    \begin{minipage}{1\textwidth}
+    Gọi \( T(n) \) là thời gian thực hiện (micro giây) \( n \) bài toán. Từ đó, ta có:
+\[
+    \begin{aligned}
+        T_1 &= n \log n \\
+        T_3 &= n^3 \\
+        T_4 &= 2^n \\
+        T_5 &= n!
+    \end{aligned}
+\]
+
+Gọi \( N \) là tối đa số bài toán các hàm \( T(n) \) có thể thực hiện trong 1 giây ( \( 10^6 \) micro giây). Từ đó, ta có:
+\[
+\Rightarrow
+\left\{
+\begin{aligned}
+T_1 &= n \log n = 10^6 \\
+T_2 &= n^3 = 10^6 \\
+T_3 &= 2^n = 10^6 \\
+T_4 &= n! = 10^6
+\end{aligned}
+\right.
+\]\\
+\[
+\Rightarrow
+\left\{
+\begin{aligned}
+        N &= 2^{10^6} \\
+        N &= (10^6)^{\frac{1}{3}} = 10^2 \\
+        N &= \log(10^6) = 6 \log(10) = 19 \\
+        N &= 9\\
+\end{aligned}
+\right.
+\]
+\end{minipage}
+Tương tự với T = 1 năm = 31557600 giây, T = 1 thế kỉ = 3155760000 ta có:
+\[
+\Rightarrow
+\textbf{T là 1 năm:}
+\left\{
+\begin{aligned}
+        N &= 2^{10^6}\cdot31557600\\
+        N &=  10^2\cdot31557600 = 3155760000 \\
+        N &= 19\cdot31557600 = 599594400\\
+        N &= 9\cdot31557600 = 284018400\\
+\end{aligned}\\
+\right.\\
+\]
+\[
+\textbf{T là 1 thế kỉ:}
+\left\{
+\begin{aligned}
+        N &= 2^{10^6}\cdot3155760000\\
+        N &=  10^2\cdot3155760000 = 315576000000 \\
+        N &= 19\cdot3155760000 = 59959440000\\
+        N &= 9\cdot3155760000 = 28401840000\\
+\end{aligned}
+\right.
+\]
 \section{Với mỗi nhóm bên dưới, hãy sắp xếp tăng dần "theo Big-O nhỏ nhất", có giải thích ngắn gọn cách so sánh}
 \textit{Group1}\\
 $\begin{aligned}
