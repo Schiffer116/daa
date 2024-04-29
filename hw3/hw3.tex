@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{amssymb}
 \usepackage{array}
+\usepackage{tikz}
 \geometry{margin=3cm}
 
 \titleformat{\section}
@@ -146,7 +147,7 @@ Tương tự với T = 1 năm = 31557600 giây, T = 1 thế kỉ = 3155760000 ta
 \textit{Group1}\\
 $\begin{aligned}
     f_1(n) &= \binom{n}{100} = \dfrac{n!}{100!(n-100)!} = \dfrac{n(n-1)(n-2)...(n-99)}{100!} = O(n^{100}) \\
-    f_2(n) &= n^100 = O(n^{100}) \\
+    f_2(n) &= n^{100} = O(n^{100}) \\
     f_3(n) &= \dfrac{1}{n} = n^{-1} = O(n^{-1}) \\
     f_4(n) &= 10^{1000} n = O(n) \\
     f_5(n) &= nlogn = O(n^{1 + c}) \quad (\text{vì } logn = O(n^c), \text{c có thể rất nhỏ}) \\
@@ -276,8 +277,127 @@ $\Rightarrow f_1(n) < f_5(n) < f_3(n) < f_8(n) < f_7(n) < f_6(n) < f_4(n) < f_2(
     $f(n) \leq d.h(n) \quad \forall n \geq n_2$ \\
     $\Rightarrow f(n) \in O(h(n))$\\
     \text{Vậy giả thiết ở câu c đã được chứng minh} \\
+    \item $\max{\{f(n), g(n)\}} = \Theta(f(n)+g(n))$ \\\\
+		$\dfrac{f(n) + g(n)}{2} \leq \max{\{f(n), g(n)\}} \leq f(n) + g(n) \quad\forall n \geq n_0$ \\
+		Chọn $c_1 = \dfrac{1}{2}, c_2 = 1, n_0 = 1$, theo định nghĩa của $Big-\Theta$, ta có điều cần chứng minh: $\max{\{f(n), g(n)\}} = \Theta(f(n)+g(n))$
+		\item $g(n) \in O(h(n)) \Rightarrow O(g(n)) \subseteq O(h(n))$ \\\\
+		Xét 1 hàm bất kỳ $f(n) \in O(g(n))$ \\
+		$\Leftrightarrow \exists c_1 \in \mathbb{R^+}, n_1 \in \mathbb{N}$ sao cho:
+		$f(n) \leq c_1.g(n) \quad\forall n \geq n_1 \quad (1)$ \\
+		Ta có: $g(n) \in O(h(n))$ \\
+		$\Leftrightarrow \exists c_2 \in \mathbb{R^+}, n_2 \in \mathbb{N}$ sao cho:
+		$g(n) \leq c_2.h(n) \quad\forall n \geq n_2 \quad (2)$ \\
+		Đặt: $n_0 = \max{\{n_1, n_2\}}$ \\
+		Từ (1), (2) $\Rightarrow f(n) \leq c_1c_2.h(n) \quad\forall n \geq n_0
+		\quad \Leftrightarrow \quad f(n) \in O(h(n))$ \\
+		$\Rightarrow$ Mọi phần tử của O(g(n)) đều thuộc O(h(n)) $\Rightarrow O(g(n)) \subseteq O(h(n))$ \\
+		Vậy: $g(n) \in O(h(n)) \Rightarrow O(g(n)) \subseteq O(h(n))$
+		\item $\Theta(g(n)) = O(g(n)) \cap \Omega(g(n))$ \\\\
+		Xét 1 hàm bất kỳ $f(n) \in \Theta(g(n))$ \\
+		$\Leftrightarrow \exists c_1, c_2 \in \mathbb{R^+}, n_0 \in \mathbb{N}$ sao cho: 
+		$c_1.g(n) \leq f(n) \leq c_2.g(n) \quad\forall n \geq n_0$
+		\begin{gather*}
+			\Leftrightarrow\left\{\begin{array}{lll}
+				f(n) \geq c_1.g(n) \\
+				f(n) \leq c_2.g(n) 
+			\end{array}\right. \forall n \geq n_0
+			\quad 
+			\Leftrightarrow
+			\hspace{0.6cm}
+			\left\{\begin{array}{lll}
+				f(n) = \Omega(g(n)) \\
+				f(n) = O(g(n))
+			\end{array}\right.
+		\end{gather*}
+		Vậy ta có điều cần chứng minh: $\Theta(g(n)) = O(g(n)) \cap \Omega(g(n))$.
+		\item $n + n^2O(lnn) = O(n^2lnn)$ \\\\
+		Xét 1 hàm bất kỳ $f(n) \in O(lnn)$ \\
+		$\Rightarrow \exists c_1 \in \mathbb{R^+}, n_0 \in \mathbb{N}$ sao cho:
+		$f(n) \leq c_1lnn \quad\forall n\geq n_0$ \\
+		$\Leftrightarrow n^2.f(n) \leq c_1n^2lnn \quad\forall n\geq n_0$ \\
+		$\Leftrightarrow n + n^2.f(n) \leq n + c_1n^2lnn \quad\forall n\geq n_0$ \\
+		Xét: $n + c_1n^2lnn \leq c_2n^2lnn \quad\forall n\geq n_0$ (với $c_2 \in \mathbb{R^+}$) \\
+		$\Leftrightarrow 1 + c_1nlnn \leq c_2nlnn \quad\forall n\geq n_0$ \\
+		$\Leftrightarrow 1 \leq (c_2 - c_1)nlnn \quad\forall n\geq n_0$ \\
+		Chọn $c_1 = 1, c_2 = 2, n_0 =2$, theo định nghĩa của Big-O ta có điều cần chứng minh.
 \end{enumerate}
-
+\section{Các khẳng định bên dưới là đúng hay sai? Vì sao?}
+	\begin{enumerate}
+		\item Nếu f(n) = $\Theta$(g(n)) và g(n) = $\Theta$(h(n)), thì h(n) = $\Theta$(f(n)) \\ \\
+		Ta có: f(n) = $\Theta$(g(n)) \\
+		$\Rightarrow \exists a_1, a_2 \in \mathbb{R^+}, n_a \in \mathbb{N} \text{ sao cho:}$ 
+		$a_1.g(n) \leq f(n) \leq a_2.g(n) \quad \forall n \geq n_a \quad (1)$ \\ \\
+		Ta có: g(n) = $\Theta$(h(n)) \\
+		$\Rightarrow \exists b_1, b_2 \in \mathbb{R^+}, n_b \in \mathbb{N} \text{ sao cho:}$ 
+		$b_1.h(n) \leq g(n) \leq b_2.h(n) \quad \forall n \geq n_b$ \\
+		$\Rightarrow \dfrac{1}{b_2}.g(n) \leq h(n) \leq \dfrac{1}{b_1}.g(n) \quad\forall n \geq n_b \qquad\qquad\qquad\qquad\qquad\qquad\qquad (2)$ \\ \\
+		$\text{Đặt: } n_0 = max(n_a, n_b)$ \\
+		$\text{Từ (1) } \Rightarrow \dfrac{1}{a_2}.f(n) \leq g(n) \leq \dfrac{1}{a_1}.f(n) \quad\forall n \geq n_a$ \\
+		$\Rightarrow \dfrac{1}{b_1}.g(n) \leq \dfrac{1}{a_1b_1}.f(n) \text{ và } \dfrac{1}{a_2b_2}.f(n) \leq \dfrac{1}{b_2}.g(n) \quad\forall n \geq n_0 \qquad\quad\quad\quad\quad (3)$ \\
+		$\text{Từ (2) và (3) } \Rightarrow \dfrac{1}{a_2b_2}.f(n) \leq h(n) \leq \dfrac{1}{a_1b_1}.f(n) \quad\forall n \geq n_0$ \\ \\
+		$\text{Đặt: } c_1 = \dfrac{1}{a_1b_1} \text{ và } c_2 = \dfrac{1}{a_2b_2}$ \\
+		$\text{Suy ra: } \exists c_1, c_2 \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:}$
+		$c_1.f(n) \leq h(n) \leq c_2.f(n) \quad \forall n \geq n_0$ \\ 
+		$\Leftrightarrow h(n) = \Theta(f(n))$ \\
+		Vậy: khẳng định này là đúng.
+		\item Nếu f(n) = O(g(n)) và g(n) = O(f(n)), thì f(n) = g(n) \\ \\
+		(Các tính chất trong câu này có trong file C1T6 trang 22) \\
+		Ta có tính chất:  f(n) = O(g(n)) và g(n) = O(f(n)) $\Leftrightarrow$ O(f(n)) = O(g(n)) \\
+		Xét ví dụ: f(n) = n, g(n) = 2n \qquad\qquad\qquad\qquad\qquad(1) \\
+		Ta có tính chất: O(Cf(n)) = O(f(n)) với C là hằng số (2) \\
+		Từ (1), (2) suy ra: O(f(n)) = O(g(n)) nhưng f(n) $\ne$ g(n) \\
+		Tức là: f(n) = O(g(n)) và g(n) = O(f(n)), thì có thể f(n) $\ne$ g(n) \\
+		Vậy: khẳng định này là sai.
+		\item f(n) + O(f(n)) = $\Theta$(f(n)) \\\\
+		$\text{Xét 1 hàm bất kỳ } g(n) \in O(f(n))$ \\
+		$\Rightarrow \exists a \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:} $
+		$g(n) \leq a.f(n) \quad\forall n \geq n_0$ \\
+		$\Rightarrow 1.f(n) \leq f(n) + g(n) \leq (a+1)f(n) \quad (\text{Vì g(n) là hàm chi phí nên không thể âm})$ \\
+		Đặt c$_1$ = 1, c$_2$ = a+1 \\
+		Suy ra: $c_1f(n) \leq f(n) + g(n) \leq c_2f(n) \quad\forall n \geq n_0$ \\
+		$\Rightarrow f(n) + O(f(n)) = \Theta(f(n))$ \\
+		Vậy: khẳng định này là đúng.
+		\item 2$^{10n}$ = O(2$^n$) \\\\
+		Giả sử: $2^{10n} = O(2^n)$ \\
+		$\Rightarrow \exists c \in \mathbb{R^+}, n_0 \in \mathbb{N} \text{ sao cho:}$
+		$2^{10n} \leq c.2^n \quad\forall n \geq n_0$ \\
+		$\Leftrightarrow 2^{9n} \leq c \Leftrightarrow n \leq \dfrac{1}{9}.\log_2c \quad\forall n \geq n_0$ \\
+		Đặt: $\alpha = \dfrac{1}{9}.\log_2c \Rightarrow n \leq \alpha \quad\forall n \geq n_0$ 
+		\begin{itemize}
+		\item Xét trường hợp 1: $\alpha < n_0 \quad$ \\\\
+		\begin{tikzpicture}[scale=1] 
+			\draw[->,thin] (-5,0)--(5,0); 
+			\foreach \x in {-3}\fill[black] (\x,0) circle (1pt)node[below]{$\alpha$};
+			\foreach \x in {-1}\fill[black] (\x,0) circle (1pt)node[below]{$n_0$};
+			\foreach \x in {2}\fill[black] (\x,0) circle (1pt)node[below]{$n$};
+		\end{tikzpicture} \\
+		Với $n \geq n_0$ thì $n > \alpha \Rightarrow$ Mâu thuẫn. \\
+		\item Xét trường hợp 2: $\alpha \geq n_0$ \\\\
+		\begin{tikzpicture}[scale=1] 
+			\draw[->,thin] (-5,0)--(5,0); 
+			\foreach \x in {-3}\fill[black] (\x,0) circle (1pt)node[below]{$n_0$};
+			\foreach \x in {-1}\fill[black] (\x,0) circle (1pt)node[below]{$\alpha$};
+			\foreach \x in {2}\fill[black] (\x,0) circle (1pt)node[below]{$n$};
+		\end{tikzpicture} \\
+		Sẽ có những trường hợp $n > \alpha$ như trên trục số $\Rightarrow$ Mâu thuẫn. 
+		\end{itemize}
+		Vậy: Giả sử sai $\Rightarrow$ Khẳng định này là sai.
+		\item 2$^{n+10}$ = O(2$^n$) \\\\
+		Ta có: $2^{n+10} = 2^{10}.2^n \leq 2^{10}.2^n \quad\forall n \geq 1$ \\
+		Chọn $c = 2^{10}$, $n_0 = 1$, theo định nghĩa của Big-O, ta có: 2$^{n+10}$ = O(2$^n$)\\
+		Vậy: khẳng định này là đúng.
+		\item $\log_an$ = $\Theta$($\log_bn$) \\\\
+		Điều kiện xác định: a>1, b>1 (bởi vì $n \in \mathbb{N}$ nên a, b không thể nhỏ hơn 1) \\
+		Giả sử: $\log_an$ = $\Theta$($\log_bn$) \\
+		$\Rightarrow \exists c_1, c_2 \in \mathbb{R^+}, n_0 \in \mathbb{N}$ sao cho: 
+		\begin{center}
+		$c_1.\log_bn \leq \log_an \leq c_2.\log_bn \quad\forall n \geq n_0$ \\
+		$\Leftrightarrow c_1.\log_bn \leq \log_ab.\log_bn \leq c_2.\log_bn \quad\forall n \geq n_0$ \\
+		$\Leftrightarrow c_1 \leq \log_ab \leq c_2 \quad\forall n \geq n_0$
+		\end{center}
+		Luôn tồn tại $c_1, c_2$ và $n_0 > 1$ thoải mãn điều kiện trên $\Rightarrow$ Giả sử đúng. \\
+		Vậy: khẳng định này là đúng.
+	\end{enumerate}
 % 5
 \section{Ước lượng nhanh độ phức tạp của giải thuật đệ quy dùng Định lý Master}
 \begin{enumerate}[label=\bfseries\large\theenumi.]
